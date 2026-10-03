@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import logo from "../../public/images/logo.png";
 import { Butterfly, Leaf } from "@/components/Decor";
 
-/* Intro splash, played on every page load (including refreshes).
+/* Intro splash, played on every load of the home page (including refreshes) — other pages, like blog posts, skip it.
    While it has `splash-playing`, globals.css locks page scroll and holds the hero animations.
    The whole timeline is CSS (see globals.css), so it also clears itself without JS. */
 
@@ -30,10 +31,14 @@ const particles = [
 ];
 
 export default function Splash() {
-  const [phase, setPhase] = useState<"play" | "leaving" | "skip" | "done">("play");
+  // Lives in the root layout, so this only reflects the page the visitor first landed on
+  const pathname = usePathname();
+  const [landedOnHome] = useState(pathname === "/");
+  const [phase, setPhase] = useState<"play" | "leaving" | "skip" | "done">(landedOnHome ? "play" : "done");
   const skipRef = useRef<() => void>(() => {});
 
   useEffect(() => {
+    if (!landedOnHome) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const t = reduced ? REDUCED : { exit: EXIT_AT, done: DONE_AT };
 
@@ -56,7 +61,7 @@ export default function Splash() {
       clearTimeout(exitTimer); clearTimeout(doneTimer); clearTimeout(skipTimer);
       window.removeEventListener("keydown", onKey);
     };
-  }, []);
+  }, [landedOnHome]);
 
   if (phase === "done") return null;
 

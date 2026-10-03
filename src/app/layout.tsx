@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Lora, Caveat, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Splash from "@/components/Splash";
+import { siteUrl } from "@/lib/content";
 
 const outfit = Outfit({
   subsets:  ["latin"],
@@ -32,7 +33,11 @@ const dancing = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title:       "Project Soulfulness | Good People. Better Days.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default:  "Project Soulfulness | Good People. Better Days.",
+    template: "%s | Project Soulfulness",
+  },
   description: "A warm social-wellness space — part coffee shop, part community sanctuary — where young people unwind, connect, and find balance.",
   keywords:    "Project Soulfulness, social wellness, community cafe, mindfulness, yoga, loneliness, young adults",
   openGraph: {
