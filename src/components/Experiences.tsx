@@ -30,14 +30,17 @@ export default function Experiences() {
           {experiences.map((e, i) => (
             <article key={e.title} id={e.id} className={`exp-card reveal delay-${(i % 5) + 1} group scroll-mt-28`}>
               <div className="relative">
-                <div className="exp-media relative aspect-[4/3] overflow-hidden rounded-2xl shadow-md">
-                  <Image
-                    src={e.image}
-                    alt={e.title}
-                    fill
-                    className="object-cover transition duration-700 group-hover:scale-110"
-                    sizes="(min-width:1024px) 20vw, (min-width:640px) 33vw, 50vw"
-                  />
+                {/* Green frame around a white mat, like a mounted print */}
+                <div className="exp-media exp-frame rounded-2xl p-1.5 shadow-md transition-shadow duration-300">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl border-2 border-white">
+                    <Image
+                      src={e.image}
+                      alt={e.title}
+                      fill
+                      className="object-cover transition duration-700 group-hover:scale-110"
+                      sizes="(min-width:1024px) 20vw, (min-width:640px) 33vw, 50vw"
+                    />
+                  </div>
                 </div>
                 <span
                   className="absolute -bottom-4 left-3 grid h-9 w-9 place-items-center rounded-full border-[3px] border-paper text-white shadow"

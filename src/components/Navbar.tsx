@@ -48,8 +48,16 @@ export default function Navbar() {
         boxShadow:      scrolled ? "0 4px 24px rgba(0,187,101,0.12)" : "none",
       }}
     >
-      <nav className="max-w-7xl mx-auto px-5 lg:px-10 flex items-center justify-between" style={{ height: scrolled ? 80 : 104, transition: "height .3s ease" }}>
-        <Link href={navHref("#home", onHome)} aria-label="Project Soulfulness home"><Logo preload className={`transition-all duration-300 ${scrolled ? "h-16 lg:h-[72px]" : "h-[72px] lg:h-[92px]"}`} /></Link>
+      <nav className={`max-w-7xl mx-auto px-5 lg:px-10 flex items-center justify-between transition-[height] duration-300 ${scrolled ? "h-[96px] lg:h-[112px]" : "h-[116px] lg:h-[152px]"}`}>
+        {/* The logo keeps its size when the bar slims down on scroll; it then hangs below the bar on a white cut-out */}
+        <Link href={navHref("#home", onHome)} aria-label="Project Soulfulness home" className="relative z-10 self-start mt-1.5">
+          <span
+            className={`absolute -inset-1.5 rounded-full transition-opacity duration-300 ${scrolled ? "opacity-100" : "opacity-0"}`}
+            style={{ background: "rgba(255,255,255,0.92)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", boxShadow: "0 10px 20px -8px rgba(0,187,101,0.25)" }}
+            aria-hidden="true"
+          />
+          <Logo preload className="relative h-[104px] lg:h-[140px]" />
+        </Link>
 
         <ul className="hidden lg:flex items-center gap-6 xl:gap-9">
           {navLinks.map((l) => (
@@ -73,7 +81,7 @@ export default function Navbar() {
           href="/contact"
           className="hidden lg:inline-flex items-center gap-2 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:brightness-95 hover:-translate-y-0.5"
         >
-          Join the Community <ArrowRight size={16} />
+          Be Part of the Journey <ArrowRight size={16} />
         </Link>
 
         <button
@@ -104,7 +112,7 @@ export default function Navbar() {
             onClick={() => setMenuOpen(false)}
             className="mt-2 flex items-center justify-center gap-2 rounded-full bg-forest py-3 text-sm font-semibold text-white"
           >
-            Join the Community <ArrowRight size={16} />
+            Be Part of the Journey <ArrowRight size={16} />
           </Link>
         </div>
       )}

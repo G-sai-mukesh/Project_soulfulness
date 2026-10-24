@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Lora, Caveat, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Splash from "@/components/Splash";
+import FlyingButterflies from "@/components/FlyingButterflies";
 import { siteUrl } from "@/lib/content";
 
 const outfit = Outfit({
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${outfit.variable} ${lora.variable} ${caveat.variable} ${dancing.variable}`}>
       <body className="font-sans antialiased">
         <Splash />
+        <FlyingButterflies />
         {children}
       </body>
     </html>

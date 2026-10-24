@@ -18,8 +18,15 @@ export function navHref(href: string, onHome: boolean) {
 /* Public site URL — used for canonical links, the sitemap and social previews. Update if the domain differs. */
 export const siteUrl = "https://projectsoulfulness.com";
 
-/* Paste a hosted video URL (e.g. an .mp4) here to enable the hero "Watch Video" player. */
-export const heroVideoSrc = "";
+/* Photo stack under the hero intro — swap in real photos from the café. */
+export const heroGallery = [
+  { src: "/images/exp-cafe.jpg",       caption: "Coffee & good company" },
+  { src: "/images/exp-yoga.jpg",       caption: "Mindful mornings" },
+  { src: "/images/exp-bulldog.jpg",    caption: "Our four-legged friends" },
+  { src: "/images/exp-discussion.jpg", caption: "Real conversations" },
+  { src: "/images/exp-comedy.jpg",     caption: "Laughter-filled evenings" },
+  { src: "/images/exp-library.jpg",    caption: "Quiet reading corners" },
+];
 
 export type IconName =
   | "sprout" | "coffee" | "flower" | "heart" | "users" | "sparkles"
@@ -33,30 +40,24 @@ export const heroPillars: { icon: IconName; label: string }[] = [
   { icon: "heart",  label: "A Kinder, Happier You" },
 ];
 
-export const aboutHighlights: { icon: IconName; label: string }[] = [
-  { icon: "users",    label: "A welcoming space for real connections" },
-  { icon: "sparkles", label: "Experiences that uplift" },
-  { icon: "heart",    label: "A community that cares" },
-];
-
 export const problemSolutionPromise = [
   {
     icon:  "brain" as IconName,
     title: "The Problem",
     tone:  "blush" as const,
-    body:  "Urban young adults are increasingly overwhelmed by work stress, peer pressure, relationship trauma, loneliness, trust issues, and difficulty forming genuine companionship. Conventional therapy is often perceived as clinical and carries social stigma.",
+    body:  "Urban young adults are increasingly overwhelmed by work stress, peer pressure, relationship trauma, loneliness, trust issues and difficulty forming genuine companionship. Conventional therapy is often perceived as clinical and carries social stigma.",
   },
   {
     icon:  "lightbulb" as IconName,
     title: "The Solution",
     tone:  "mint" as const,
-    body:  "A non-clinical social-wellness space where healing happens gently, socially, and without judgement — through hospitality, companionship, mindfulness, and community programming.",
+    body:  "A non-clinical social-wellness space where healing happens gently, socially and without judgement — through hospitality, companionship, mindfulness and community programming.",
   },
   {
     icon:  "heart" as IconName,
     title: "The Promise",
-    tone:  "peach" as const,
-    body:  "A gentle nature-cure approach — no clinical setting, no stigma. Just community, companionship, and curated group trips that quietly rebuild emotional integrity over time.",
+    tone:  "blush" as const,
+    body:  "A gentle nature-cure approach — no clinical setting, no stigma. Just community, companionship and curated group trips that quietly rebuild emotional integrity over time.",
   },
 ];
 
@@ -192,9 +193,13 @@ export const testimonials = [
   { quote: "A place where I can relax, be myself, and actually feel heard.",                         name: "Rohan", age: 28, avatar: "/images/avatar-rohan.jpg" },
 ];
 
-/* Placeholder contact details — replace with the real ones before launch. */
+/* Contact details. `addressShort` is for tight spots like the footer row; both link to `mapsUrl`. */
+const fullAddress = "Western Dallas Center, Dallas Centre Rd, Silpa Gram Craft Village, Madhapur, Hyderabad, Telangana 500032";
+
 export const contact = {
-  email:   "contact@projectsoulfulness.com",
-  phone:   "+91 79938 37007",
-  address: "Your café address, City",
+  email:        "contact@projectsoulfulness.com",
+  phone:        "+91 79938 37007",
+  address:      fullAddress,
+  addressShort: "Madhapur, Hyderabad",
+  mapsUrl:      `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`,
 };

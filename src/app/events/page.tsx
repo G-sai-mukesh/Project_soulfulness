@@ -45,7 +45,7 @@ function EventCard({ ev, first }: { ev: EventItem; first: boolean }) {
         <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink/80">
           <li className="flex items-center gap-2"><CalendarDays size={16} className="text-forest" />{fullDate}</li>
           <li className="flex items-center gap-2"><Clock size={16} className="text-forest" />{formatEventTime(ev.start)} – {formatEventTime(ev.end)}</li>
-          <li className="flex items-center gap-2"><MapPin size={16} className="text-forest" />{contact.address}</li>
+          <li className="flex items-center gap-2"><MapPin size={16} className="flex-shrink-0 text-forest" />{contact.address}</li>
         </ul>
 
         <p className="mt-5 leading-relaxed text-muted">{ev.about}</p>
@@ -112,7 +112,7 @@ export default function EventsPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <Navbar />
-      <main className="bg-paper pt-32 lg:pt-40 pb-24">
+      <main className="bg-paper pt-40 lg:pt-52 pb-24">
         <div className="max-w-6xl mx-auto px-5 lg:px-10">
           <header className="hero-in max-w-2xl">
             <span className="eyebrow">Upcoming Events</span>

@@ -4,12 +4,11 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Icon from "@/components/Icon";
 import { useReveal } from "@/lib/useReveal";
-import { aboutHighlights, problemSolutionPromise } from "@/lib/content";
+import { heroPillars, problemSolutionPromise } from "@/lib/content";
 
 const tones = {
   blush: { bg: "var(--color-magenta-soft)", iconBg: "var(--color-magenta-tint)", icon: "var(--color-magenta)" },
   mint:  { bg: "var(--color-forest-soft)", iconBg: "var(--color-forest-tint)", icon: "var(--color-forest)" },
-  peach: { bg: "var(--color-peach)",        iconBg: "#FBDCD3", icon: "var(--color-magenta)" },
 };
 
 export default function AboutSection() {
@@ -24,7 +23,7 @@ export default function AboutSection() {
             <h2 className="mt-3 font-serif font-semibold text-4xl lg:text-5xl text-ink">Project Soulfulness</h2>
             <p className="mt-5 text-base lg:text-lg leading-relaxed text-muted max-w-lg">
               A curated social-wellness platform — part coffee shop, part community sanctuary — where
-              young individuals can unwind, connect, and gradually convert inner stress into a life of
+              young individuals can unwind, connect and gradually convert inner stress into a life of
               greater integrity and balance.
             </p>
             <a
@@ -39,14 +38,14 @@ export default function AboutSection() {
             <div className="relative aspect-[16/10] overflow-hidden blob-a shadow-xl">
               <Image src="/images/about-cafe.jpg" alt="Warm café interior with hanging lights" fill className="object-cover" sizes="(min-width:1024px) 50vw, 100vw" />
             </div>
-            <div className="relative -mt-14 mx-3 sm:mx-10 sm:ml-auto sm:w-[78%] grid grid-cols-3 rounded-3xl bg-paper/95 shadow-xl backdrop-blur py-5">
-              {aboutHighlights.map((h, i) => (
-                <div key={h.label} className={`flex flex-col items-center text-center px-3 ${i > 0 ? "border-l border-forest/10" : ""}`}>
-                  <Icon name={h.icon} size={26} strokeWidth={1.7} className="text-forest" />
-                  <span className="mt-2 text-[11px] sm:text-xs leading-snug text-ink/80">{h.label}</span>
-                </div>
+            <ul className="relative -mt-14 mx-3 sm:mx-10 sm:ml-auto sm:w-[82%] grid grid-cols-4 rounded-3xl bg-paper/95 shadow-xl backdrop-blur py-5">
+              {heroPillars.map((p, i) => (
+                <li key={p.label} className={`flex flex-col items-center text-center px-1.5 sm:px-3 ${i > 0 ? "border-l border-forest/10" : ""}`}>
+                  <Icon name={p.icon} size={26} strokeWidth={1.7} className="text-forest" />
+                  <span className="mt-2 text-[11px] sm:text-xs leading-snug text-ink/80">{p.label}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
 

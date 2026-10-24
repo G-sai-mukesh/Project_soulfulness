@@ -1,15 +1,15 @@
-// Butterfly and leaf line-art, echoing the logo's illustrations. Used by the splash and the hero orbit.
+// Butterfly and leaf line-art, echoing the logo's illustrations. Used by the splash, the hero orbit and the site-wide flyers.
 
-export function Butterfly({ className = "" }: { className?: string }) {
+export function Butterfly({ className = "", color = "var(--color-forest)" }: { className?: string; color?: string }) {
   return (
     <svg viewBox="0 0 40 32" className={`block h-full w-full ${className}`} aria-hidden="true">
-      <g fill="#FFFFFF" stroke="var(--color-forest)" strokeWidth="1.2" strokeLinejoin="round">
+      <g fill="#FFFFFF" stroke={color} strokeWidth="1.2" strokeLinejoin="round">
         <path d="M20 16C14 3 3 2 4 11c1 7 9 7 16 5Z" />
         <path d="M20 16C26 3 37 2 36 11c-1 7-9 7-16 5Z" />
         <path d="M20 16c-5 4-11 10-8 13 3 2 6-5 8-13Z" />
         <path d="M20 16c5 4 11 10 8 13-3 2-6-5-8-13Z" />
       </g>
-      <path d="M20 10v15M20 10l-3-5M20 10l3-5" fill="none" stroke="var(--color-forest)" strokeWidth="1.3" strokeLinecap="round" />
+      <path d="M20 10v15M20 10l-3-5M20 10l3-5" fill="none" stroke={color} strokeWidth="1.3" strokeLinecap="round" />
     </svg>
   );
 }

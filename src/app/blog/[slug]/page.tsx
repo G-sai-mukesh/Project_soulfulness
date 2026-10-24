@@ -87,7 +87,7 @@ export default async function BlogPostPage({ params }: Props) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <Navbar />
-      <main className="bg-paper pt-32 lg:pt-40 pb-24">
+      <main className="bg-paper pt-40 lg:pt-52 pb-24">
         <article className="max-w-3xl mx-auto px-5">
           <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-forest">
             <ArrowLeft size={16} /> All articles

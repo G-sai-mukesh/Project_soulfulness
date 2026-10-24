@@ -1,7 +1,7 @@
 import Image from "next/image";
 import logo from "../../public/images/logo.png";
 import Icon from "@/components/Icon";
-import { Butterfly, Leaf } from "@/components/Decor";
+import { Leaf } from "@/components/Decor";
 import { experiences } from "@/lib/content";
 
 /* Hero "solar system": the logo at the centre, the ten services on two rings.
@@ -18,8 +18,8 @@ const slots = [
 ];
 
 const particles = [
-  { r: 24, dur: 34, start: 20 }, { r: 24, dur: 34, start: 200 },
-  { r: 42, dur: 52, start: 110, magenta: true }, { r: 42, dur: 70, start: 290 },
+  { r: 28, dur: 34, start: 20 }, { r: 28, dur: 34, start: 200 },
+  { r: 47, dur: 52, start: 110, magenta: true }, { r: 47, dur: 70, start: 290 },
 ];
 
 export default function ServiceOrbit() {
@@ -28,20 +28,13 @@ export default function ServiceOrbit() {
   return (
     <div className="orbit" aria-label="Our ten experiences">
       <div className="orbit-aura" />
-      <svg className="orbit-bg-rings" viewBox="-20 -20 140 140" aria-hidden="true">
-        <circle cx="50" cy="50" r="56" strokeDasharray="0.3 1.8" />
-        <circle cx="50" cy="50" r="64" className="orbit-bg-far" />
-        <circle cx="106" cy="50" r=".8" className="twinkle" />
-        <circle cx="10.4" cy="89.6" r=".7" className="twinkle" style={{ animationDelay: "-2s" }} />
-        <circle cx="50" cy="-14" r=".7" className="twinkle" style={{ animationDelay: "-3.5s" }} />
-      </svg>
       <div className="orbit-glow" />
 
       <svg className="orbit-paths" viewBox="0 0 100 100" aria-hidden="true">
-        <circle cx="50" cy="50" r="17" className="orbit-path orbit-path-core" />
-        <circle cx="50" cy="50" r="24" className="orbit-path" strokeDasharray="0.6 1.6" />
-        <circle cx="50" cy="50" r="42" className="orbit-path" strokeDasharray="14 3 1 3" />
-        <circle cx="50" cy="50" r="48.5" className="orbit-path orbit-path-extra" strokeDasharray="0.4 2.4" />
+        <circle cx="50" cy="50" r="19" className="orbit-path orbit-path-core" />
+        <circle cx="50" cy="50" r="28" className="orbit-path" strokeDasharray="0.6 1.6" />
+        <circle cx="50" cy="50" r="47" className="orbit-path" strokeDasharray="14 3 1 3" />
+        <circle cx="50" cy="50" r="52" className="orbit-path orbit-path-extra" strokeDasharray="0.4 2.4" />
       </svg>
 
       {particles.map((p, i) => (
@@ -50,13 +43,11 @@ export default function ServiceOrbit() {
         </div>
       ))}
 
-      <span className="orbit-decor orbit-drift" style={{ left: "7%",  top: "12%", width: "6.5cqw", ["--tilt" as string]: "-12deg" } as React.CSSProperties}><Butterfly className="splash-flutter" /></span>
-      <span className="orbit-decor orbit-drift" style={{ left: "90%", top: "86%", width: "5cqw",   ["--tilt" as string]: "10deg", animationDelay: "-3s" } as React.CSSProperties}><Butterfly className="splash-flutter" /></span>
       <span className="orbit-decor orbit-drift" style={{ left: "92%", top: "9%",  width: "3.6cqw", ["--tilt" as string]: "30deg", animationDelay: "-1.5s" } as React.CSSProperties}><Leaf /></span>
       <span className="orbit-decor orbit-drift" style={{ left: "5%",  top: "84%", width: "3.2cqw", ["--tilt" as string]: "200deg", animationDelay: "-4s" } as React.CSSProperties}><Leaf /></span>
 
       <div className="orbit-logo">
-        <Image src={logo} alt="Project Soulfulness" sizes="(min-width:1024px) 180px, 30vw" className="h-full w-full" />
+        <Image src={logo} alt="Project Soulfulness" sizes="(min-width:1024px) 230px, 32vw" className="h-full w-full" />
       </div>
 
       {[0, 1].map((ring) => (

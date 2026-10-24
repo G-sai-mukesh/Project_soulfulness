@@ -20,14 +20,14 @@ export const metadata: Metadata = {
 const details = [
   { icon: Mail,   label: "Email us",  value: contact.email,   href: `mailto:${contact.email}` },
   { icon: Phone,  label: "Call us",   value: contact.phone,   href: `tel:${contact.phone.replace(/\s/g, "")}` },
-  { icon: MapPin, label: "Visit us",  value: contact.address, href: undefined },
+  { icon: MapPin, label: "Visit us",  value: contact.address, href: contact.mapsUrl },
 ];
 
 export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-paper pt-32 lg:pt-40 pb-24">
+      <main className="bg-paper pt-40 lg:pt-52 pb-24">
         <div className="max-w-7xl mx-auto px-5 lg:px-10 grid gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
           <header className="hero-in">
             <span className="eyebrow">Contact</span>
@@ -46,7 +46,7 @@ export default function ContactPage() {
                   <span className="min-w-0">
                     <span className="block text-xs font-semibold uppercase tracking-widest text-magenta">{label}</span>
                     {href
-                      ? <a href={href} className="block break-words text-base font-medium text-ink transition-colors hover:text-forest">{value}</a>
+                      ? <a href={href} {...(href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })} className="block break-words text-base font-medium text-ink transition-colors hover:text-forest">{value}</a>
                       : <span className="block text-base font-medium text-ink">{value}</span>}
                   </span>
                 </li>

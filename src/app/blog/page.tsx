@@ -26,7 +26,7 @@ export default function BlogIndex() {
   return (
     <>
       <Navbar />
-      <main className="bg-paper pt-32 lg:pt-40 pb-24">
+      <main className="bg-paper pt-40 lg:pt-52 pb-24">
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <header className="hero-in max-w-2xl">
             <span className="eyebrow">The Soulful Journal</span>

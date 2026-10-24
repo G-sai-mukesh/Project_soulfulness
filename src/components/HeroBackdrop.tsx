@@ -4,23 +4,6 @@ import { Leaf } from "@/components/Decor";
    Everything is CSS/SVG; greens are tints of the logo green. The left half stays clear so
    the headline keeps its contrast. */
 
-// A soft botanical sprig: leaves alternating along a gently curved stem.
-function Sprig() {
-  const leaves = [
-    { x: 102, y: 262, r: -52 }, { x: 99, y: 226, r: 48 }, { x: 101, y: 190, r: -46 },
-    { x: 104, y: 154, r: 44 },  { x: 104, y: 118, r: -40 }, { x: 103, y: 82, r: 38 },
-    { x: 101, y: 48,  r: -30 }, { x: 100, y: 26,  r: 0 },
-  ];
-  return (
-    <svg viewBox="0 0 200 300" className="h-full w-full" aria-hidden="true">
-      <path d="M100 300C94 230 112 150 100 20" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-      {leaves.map((l, i) => (
-        <path key={i} d="M0 0C14-10 16-32 0-48C-16-32-14-10 0 0Z" transform={`translate(${l.x} ${l.y}) rotate(${l.r})`} fill="currentColor" />
-      ))}
-    </svg>
-  );
-}
-
 const bokeh = [
   { x: "62%", y: "14%", s: 120, d: "0s" },  { x: "88%", y: "30%", s: 70,  d: "-4s" },
   { x: "96%", y: "62%", s: 150, d: "-8s" }, { x: "54%", y: "78%", s: 90,  d: "-2s" },
@@ -49,11 +32,6 @@ export default function HeroBackdrop() {
         <path d="M0 820C260 770 520 870 800 810S1220 730 1440 780V900H0Z" className="hb-flow-b" />
         <path d="M1440 120C1230 150 1060 300 1010 470S1100 760 1440 800Z" className="hb-flow-c" />
       </svg>
-
-      <div className="hb-foliage hb-foliage-tr"><Sprig /></div>
-      <div className="hb-foliage hb-foliage-tr2"><Sprig /></div>
-      <div className="hb-foliage hb-foliage-bl"><Sprig /></div>
-      <div className="hb-foliage hb-foliage-bl2"><Sprig /></div>
 
       {bokeh.map((b, i) => (
         <span key={i} className="hb-bokeh" style={{ left: b.x, top: b.y, width: b.s, height: b.s, animationDelay: b.d }} />

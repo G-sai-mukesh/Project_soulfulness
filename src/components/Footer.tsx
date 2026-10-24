@@ -51,7 +51,7 @@ export default function Footer() {
         <ul className="flex flex-col items-center sm:flex-row sm:flex-wrap sm:justify-center gap-x-7 gap-y-3 text-sm text-white/80">
           <li className="flex items-center gap-2 whitespace-nowrap"><Mail size={16} className="text-forest" /><a href={`mailto:${contact.email}`} className="transition-colors hover:text-forest">{contact.email}</a></li>
           <li className="flex items-center gap-2 whitespace-nowrap"><Phone size={16} className="text-forest" /><a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="transition-colors hover:text-forest">{contact.phone}</a></li>
-          <li className="flex items-center gap-2 whitespace-nowrap"><MapPin size={16} className="text-forest" />{contact.address}</li>
+          <li className="flex items-center gap-2 whitespace-nowrap"><MapPin size={16} className="text-forest" /><a href={contact.mapsUrl} target="_blank" rel="noopener noreferrer" title={contact.address} className="transition-colors hover:text-forest">{contact.addressShort}</a></li>
         </ul>
         <nav aria-label="Footer">
           <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-white/70">
