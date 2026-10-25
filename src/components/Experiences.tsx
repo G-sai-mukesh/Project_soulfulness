@@ -15,7 +15,7 @@ export default function Experiences() {
         <div className="reveal flex flex-wrap items-end justify-between gap-6">
           <div>
             <span className="eyebrow">Experiences</span>
-            <h2 className="mt-3 font-sans font-bold text-3xl lg:text-5xl text-ink">Ten Ways to a Happier You</h2>
+            <h2 className="mt-3 font-sans font-bold text-3xl lg:text-5xl text-ink">Eight Ways to a Happier You</h2>
             <p className="mt-3 text-base text-muted">Complementary offerings that create a low-pressure, socially rich environment.</p>
           </div>
           <a
@@ -26,9 +26,9 @@ export default function Experiences() {
           </a>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-5 gap-y-10">
+        <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
           {experiences.map((e, i) => (
-            <article key={e.title} id={e.id} className={`exp-card reveal delay-${(i % 5) + 1} group scroll-mt-28`}>
+            <article key={e.title} id={e.id} className={`exp-card reveal delay-${(i % 4) + 1} group scroll-mt-28`}>
               <div className="relative">
                 {/* Green frame around a white mat, like a mounted print */}
                 <div className="exp-media exp-frame rounded-2xl p-1.5 shadow-md transition-shadow duration-300">
@@ -38,7 +38,7 @@ export default function Experiences() {
                       alt={e.title}
                       fill
                       className="object-cover transition duration-700 group-hover:scale-110"
-                      sizes="(min-width:1024px) 20vw, (min-width:640px) 33vw, 50vw"
+                      sizes="(min-width:1024px) 25vw, 50vw"
                     />
                   </div>
                 </div>

@@ -7,12 +7,12 @@ import Footer from "@/components/Footer";
 import { contact, events, eventDateParts, formatEventTime, siteUrl, type EventItem } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title:       "Upcoming Events — Yoga, Comedy, Workshops & Community Circles",
-  description: "See every upcoming Project Soulfulness event: yoga and mindfulness mornings, stand-up comedy nights, discussion circles, workshops and more.",
+  title:       "Upcoming Events — Comedy, Workshops, Talks & Community Circles",
+  description: "See every upcoming Project Soulfulness event: stand-up comedy nights, discussion circles, workshops, inspirational talks, mindful brunches and more.",
   alternates:  { canonical: "/events" },
   openGraph: {
     title:       "Upcoming Events at Project Soulfulness",
-    description: "Mindful mornings, comedy nights, workshops and community circles.",
+    description: "Comedy nights, workshops, talks and community circles.",
     type:        "website",
     url:         "/events",
   },
@@ -118,7 +118,7 @@ export default function EventsPage() {
             <span className="eyebrow">Upcoming Events</span>
             <h1 className="mt-3 font-serif font-semibold text-4xl lg:text-6xl text-ink">Join, learn, connect</h1>
             <p className="mt-5 text-base lg:text-lg leading-relaxed text-muted">
-              Mindful mornings, laughter-filled evenings and conversations that matter. Everyone is welcome —
+              Laughter-filled evenings, hands-on workshops and conversations that matter. Everyone is welcome —
               come solo, bring a friend, and leave with a few more.
             </p>
           </header>

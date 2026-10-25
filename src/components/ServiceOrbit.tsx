@@ -1,24 +1,23 @@
 import Image from "next/image";
 import logo from "../../public/images/logo.png";
-import Icon from "@/components/Icon";
 import { Leaf } from "@/components/Decor";
 import { experiences } from "@/lib/content";
 
-/* Hero "solar system": the logo at the centre, the ten services on two rings.
+/* Hero "solar system": the logo at the centre, the services on two rings.
    Pure CSS (see the "Hero service orbit" block in globals.css) — each ring rotates
    as one piece and every card counter-rotates to stay upright. Cards on the same
    ring never move relative to each other, and the two radii are far enough apart
    that labels can't collide at any angle. */
 
 // Clockwise from 12 o'clock; services reveal in this order (ring 0 = inner, ring 1 = outer).
+// Four per ring, the inner ring offset 45° from the outer so labels sit between each other.
 const slots = [
-  { ring: 1, angle: -90 }, { ring: 0, angle: -45 }, { ring: 1, angle: -30 }, { ring: 1, angle: 30 },
-  { ring: 0, angle: 45 },  { ring: 1, angle: 90 },  { ring: 0, angle: 135 }, { ring: 1, angle: 150 },
-  { ring: 1, angle: 210 }, { ring: 0, angle: 225 },
+  { ring: 1, angle: -90 }, { ring: 0, angle: -45 }, { ring: 1, angle: 0 },   { ring: 0, angle: 45 },
+  { ring: 1, angle: 90 },  { ring: 0, angle: 135 }, { ring: 1, angle: 180 }, { ring: 0, angle: 225 },
 ];
 
 const particles = [
-  { r: 28, dur: 34, start: 20 }, { r: 28, dur: 34, start: 200 },
+  { r: 32, dur: 34, start: 20 }, { r: 32, dur: 34, start: 200 },
   { r: 47, dur: 52, start: 110, magenta: true }, { r: 47, dur: 70, start: 290 },
 ];
 
@@ -26,13 +25,9 @@ export default function ServiceOrbit() {
   const placed = experiences.map((e, i) => ({ ...e, ...slots[i], order: i }));
 
   return (
-    <div className="orbit" aria-label="Our ten experiences">
-      <div className="orbit-aura" />
-      <div className="orbit-glow" />
-
+    <div className="orbit" aria-label="Our experiences">
       <svg className="orbit-paths" viewBox="0 0 100 100" aria-hidden="true">
-        <circle cx="50" cy="50" r="19" className="orbit-path orbit-path-core" />
-        <circle cx="50" cy="50" r="28" className="orbit-path" strokeDasharray="0.6 1.6" />
+        <circle cx="50" cy="50" r="32" className="orbit-path" strokeDasharray="0.6 1.6" />
         <circle cx="50" cy="50" r="47" className="orbit-path" strokeDasharray="14 3 1 3" />
         <circle cx="50" cy="50" r="52" className="orbit-path orbit-path-extra" strokeDasharray="0.4 2.4" />
       </svg>
@@ -47,7 +42,7 @@ export default function ServiceOrbit() {
       <span className="orbit-decor orbit-drift" style={{ left: "5%",  top: "84%", width: "3.2cqw", ["--tilt" as string]: "200deg", animationDelay: "-4s" } as React.CSSProperties}><Leaf /></span>
 
       <div className="orbit-logo">
-        <Image src={logo} alt="Project Soulfulness" sizes="(min-width:1024px) 230px, 32vw" className="h-full w-full" />
+        <Image src={logo} alt="Project Soulfulness" sizes="(min-width:1024px) 320px, 40vw" className="h-full w-full" />
       </div>
 
       {[0, 1].map((ring) => (
@@ -57,14 +52,10 @@ export default function ServiceOrbit() {
               <div className="orbit-counter">
                 <span className="orbit-seed" />
                 <div className="orbit-reveal">
-                  <a href={`#${s.id}`} className="orbit-card">
+                  <a href={`#${s.id}`} className="orbit-card" aria-label={s.title} title={s.title}>
                     <span className="orbit-photo">
                       <Image src={s.image} alt="" fill sizes="(min-width:1024px) 80px, 14vw" className="object-cover" />
                     </span>
-                    <span className="orbit-badge" style={{ background: s.accent }}>
-                      <Icon name={s.icon} strokeWidth={2.2} className="h-[58%] w-[58%]" />
-                    </span>
-                    <span className="orbit-label">{s.title}</span>
                   </a>
                 </div>
               </div>

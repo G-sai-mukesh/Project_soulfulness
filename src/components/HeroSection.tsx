@@ -8,7 +8,7 @@ export default function HeroSection() {
   const enter = (delay: number) => ({ animationDelay: `${delay}s` });
 
   return (
-    <section id="home" className="relative isolate overflow-hidden bg-cream">
+    <section id="home" className="relative isolate overflow-hidden bg-paper">
       <HeroBackdrop />
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10 pt-40 lg:pt-52 pb-32 lg:pb-40 min-h-[92vh] grid items-center gap-10 lg:gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] xl:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]">

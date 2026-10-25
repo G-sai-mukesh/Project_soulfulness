@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     template: "%s | Project Soulfulness",
   },
   description: "A warm social-wellness space — part coffee shop, part community sanctuary — where young people unwind, connect, and find balance.",
-  keywords:    "Project Soulfulness, social wellness, community cafe, mindfulness, yoga, loneliness, young adults",
+  keywords:    "Project Soulfulness, social wellness, community cafe, mindfulness, loneliness, young adults",
   openGraph: {
     title:       "Project Soulfulness | Good People. Better Days.",
     description: "More than a café. A community for a calmer you.",

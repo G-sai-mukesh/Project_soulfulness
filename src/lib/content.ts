@@ -21,16 +21,14 @@ export const siteUrl = "https://projectsoulfulness.com";
 /* Photo stack under the hero intro — swap in real photos from the café. */
 export const heroGallery = [
   { src: "/images/exp-cafe.jpg",       caption: "Coffee & good company" },
-  { src: "/images/exp-yoga.jpg",       caption: "Mindful mornings" },
   { src: "/images/exp-bulldog.jpg",    caption: "Our four-legged friends" },
   { src: "/images/exp-discussion.jpg", caption: "Real conversations" },
   { src: "/images/exp-comedy.jpg",     caption: "Laughter-filled evenings" },
-  { src: "/images/exp-library.jpg",    caption: "Quiet reading corners" },
 ];
 
 export type IconName =
   | "sprout" | "coffee" | "flower" | "heart" | "users" | "sparkles"
-  | "brain" | "lightbulb" | "dog" | "yoga" | "book" | "plane"
+  | "brain" | "lightbulb" | "dog" | "plane"
   | "chat" | "mic" | "salad" | "talk" | "palette";
 
 export const heroPillars: { icon: IconName; label: string }[] = [
@@ -64,8 +62,6 @@ export const problemSolutionPromise = [
 export const experiences: { id: string; icon: IconName; title: string; desc: string; image: string; accent: string }[] = [
   { id: "exp-cafe",       icon: "coffee",  title: "Café & Coffee Raving",   desc: "A warm, unhurried coffee culture to linger and connect.",       image: "/images/exp-cafe.jpg",       accent: "#E58A3A" },
   { id: "exp-bulldog",    icon: "dog",     title: "French Bulldog Adoption", desc: "Companion pets to ease loneliness and build trust.",            image: "/images/exp-bulldog.jpg",    accent: "#00BB65" },
-  { id: "exp-yoga",       icon: "yoga",    title: "Yoga Space",              desc: "Gentle movement and mindfulness for balance.",                  image: "/images/exp-yoga.jpg",       accent: "#00BB65" },
-  { id: "exp-library",    icon: "book",    title: "Library Space",           desc: "Quiet corners for reading and reflection.",                     image: "/images/exp-library.jpg",    accent: "#C32991" },
   { id: "exp-travel",     icon: "plane",   title: "Travel Cluster",          desc: "Curated group trips that turn healing into shared experiences.", image: "/images/exp-travel.jpg",     accent: "#2D8BD8" },
   { id: "exp-discussion", icon: "chat",    title: "Group Discussions",       desc: "Peer circles to talk, listen, and be heard.",                   image: "/images/exp-discussion.jpg", accent: "#E58A3A" },
   { id: "exp-comedy",     icon: "mic",     title: "Stand-up Comedy",         desc: "Light-hearted evenings to release tension and laugh.",          image: "/images/exp-comedy.jpg",     accent: "#C32991" },
@@ -98,15 +94,6 @@ export type EventItem = {
 };
 
 export const events: EventItem[] = [
-  {
-    slug: "yoga-mindfulness-session", date: "2026-10-10", start: "08:00", end: "09:30",
-    title: "Yoga & Mindfulness Session", tagline: "A calmer mind, a happier you.", category: "Mindfulness",
-    image: "/images/event-yoga.jpg",
-    about: "Start your weekend slowly. A gentle, beginner-friendly flow followed by a guided breathing and mindfulness practice — designed to release the week's tension and help you feel grounded again.",
-    highlights: ["Gentle yoga flow suitable for all levels", "Guided breathing and body-scan meditation", "Herbal tea and quiet conversation afterwards"],
-    bring: ["Comfortable clothes", "A water bottle", "Your own mat if you have one (we have spares)"],
-    goodFor: "Beginners, busy professionals, anyone feeling stretched thin",
-  },
   {
     slug: "stand-up-comedy-evening", date: "2026-10-17", start: "19:30", end: "21:30",
     title: "Stand-up Comedy Evening", tagline: "Laughter for a lighter you.", category: "Comedy",
@@ -142,15 +129,6 @@ export const events: EventItem[] = [
     highlights: ["Time with our friendly French bulldogs", "Speciality coffee and fresh bakes", "A short talk on responsible adoption"],
     bring: ["Nothing but yourself (and maybe a camera)"],
     goodFor: "Animal lovers, and anyone who could use some unconditional affection",
-  },
-  {
-    slug: "book-swap-reading-hour", date: "2026-11-14", start: "16:00", end: "18:00",
-    title: "Book Swap & Silent Reading Hour", tagline: "Stories shared, minds refreshed.", category: "Library",
-    image: "/images/exp-library.jpg",
-    about: "Bring a book you loved, take home one someone else loved. Then settle into an hour of phone-free reading in our library corner, followed by a relaxed chat about what everyone's reading.",
-    highlights: ["Book swap table", "A full hour of phone-free silent reading", "Casual book chat over coffee"],
-    bring: ["One or two books to swap (optional)"],
-    goodFor: "Readers, introverts, and anyone craving a quiet reset",
   },
   {
     slug: "inspirational-talk-evening", date: "2026-11-21", start: "18:30", end: "20:00",

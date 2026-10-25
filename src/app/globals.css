@@ -201,7 +201,7 @@ html:has(.splash-playing) .hero-in { animation-play-state: paused; }
 
 /* ───── Hero service orbit (see ServiceOrbit.tsx) ─────
    Sized in container units: 100cqw = the orbit's width, so radii match the SVG viewBox (0–100).
-   Inner ring r=28, outer ring r=47, cards 13cqw. Cards reveal one by one from t=1s, 0.6s apart. */
+   Logo 43cqw, inner ring r=32, outer ring r=47, cards 13cqw. Cards reveal one by one from t=1s, 0.6s apart. */
 .orbit {
   --card: 13cqw;
   position: relative; width: 100%; max-width: 720px; aspect-ratio: 1; margin-inline: auto;
@@ -210,15 +210,8 @@ html:has(.splash-playing) .hero-in { animation-play-state: paused; }
 .orbit > * { position: absolute; }
 html:has(.splash-playing) .orbit, html:has(.splash-playing) .orbit * { animation-play-state: paused !important; }
 
-.orbit-glow {
-  inset: 22%; border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--color-forest) 30%, transparent) 0%, transparent 70%);
-  animation: orbitIn 1.2s ease .1s both, splashPulse 4s ease-in-out 1.3s infinite;
-}
-
 .orbit-paths { inset: 0; width: 100%; height: 100%; overflow: visible; animation: orbitIn 1.2s ease .3s both, orbitSpin 240s linear infinite; }
 .orbit-path { fill: none; stroke: var(--color-forest); stroke-width: .22; stroke-linecap: round; opacity: .55; filter: drop-shadow(0 0 .8px color-mix(in srgb, var(--color-forest) 70%, transparent)); }
-.orbit-path-core  { stroke-width: .35; opacity: .35; }
 .orbit-path-extra { opacity: .35; }
 
 .orbit-particle { inset: 0; animation: orbitIn 1s ease 2s both, orbitSpin var(--dur) linear infinite; }
@@ -233,13 +226,13 @@ html:has(.splash-playing) .orbit, html:has(.splash-playing) .orbit * { animation
 .orbit-drift { animation: orbitIn 1.2s ease 1.5s both, orbitDrift 7s ease-in-out infinite; }
 
 .orbit-logo {
-  left: 50%; top: 50%; width: 33cqw; aspect-ratio: 1; translate: -50% -50%; z-index: 2;
+  left: 50%; top: 50%; width: 43cqw; aspect-ratio: 1; translate: -50% -50%; z-index: 2;
   filter: drop-shadow(0 2cqw 4cqw color-mix(in srgb, var(--color-forest) 35%, transparent));
   animation: orbitLogoIn 1.1s cubic-bezier(.16,1,.3,1) .1s both;
 }
 
 .orbit-ring { inset: 0; z-index: 3; animation: orbitSpin var(--dur) linear infinite; }
-.orbit-ring-0 { --R: 28cqw; --dur: 110s; }
+.orbit-ring-0 { --R: 32cqw; --dur: 110s; }
 .orbit-ring-1 { --R: 47cqw; --dur: 170s; }
 .orbit-ring:has(.orbit-card:hover, .orbit-card:focus-visible) { z-index: 4; }
 .orbit-ring:has(.orbit-card:hover, .orbit-card:focus-visible),
@@ -276,20 +269,6 @@ html:has(.splash-playing) .orbit, html:has(.splash-playing) .orbit * { animation
 .orbit-card:hover .orbit-photo, .orbit-card:focus-visible .orbit-photo {
   box-shadow: 0 0 0 .6cqw color-mix(in srgb, var(--color-forest) 35%, transparent), 0 0 4cqw color-mix(in srgb, var(--color-forest) 70%, transparent);
 }
-.orbit-badge {
-  position: absolute; top: -2%; right: -6%; z-index: 1;
-  display: grid; place-items: center; width: max(18px, 4.4cqw); aspect-ratio: 1; border-radius: 50%;
-  color: #FFFFFF; border: 2px solid #FFFFFF; box-shadow: 0 2px 6px rgba(31,36,32,.2);
-}
-.orbit-label {
-  position: relative; z-index: 1; margin-top: -1.8cqw;
-  width: max-content; max-width: 20cqw; padding: .3em .75em;
-  border-radius: 999px; background: #FFFFFF; color: var(--color-ink);
-  font-size: clamp(9px, 1.9cqw, 12px); font-weight: 600; line-height: 1.15; text-align: center;
-  box-shadow: 0 .6cqw 1.8cqw rgba(31,36,32,.12);
-  transition: color .3s ease;
-}
-.orbit-card:hover .orbit-label, .orbit-card:focus-visible .orbit-label { color: var(--color-forest); }
 
 /* Phones: shrink the whole orbit a little so the outer ring's cards clear the screen edges */
 @media (max-width: 639px) { .orbit { width: 90%; } }
@@ -325,76 +304,29 @@ html:has(.splash-playing) .orbit, html:has(.splash-playing) .orbit * { animation
 }
 
 /* ───── Hero backdrop (see HeroBackdrop.tsx) ─────
-   Ivory base, drifting mint light, bokeh and paper grain.
-   All greens are tints of --color-forest. Motion is slow (10–60s loops). */
+   Plain white, with soft green hills along the bottom edge and a few drifting dots and leaves.
+   Greens are tints of --color-forest. Motion is slow (20–60s loops). */
 .hero-bg {
   --mint: color-mix(in srgb, var(--color-forest) 22%, #FFFFFF);
   position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
-  background:
-    radial-gradient(ellipse 60% 55% at 78% 45%, color-mix(in srgb, var(--mint) 70%, transparent), transparent 70%),
-    radial-gradient(ellipse 45% 40% at 0% 100%, color-mix(in srgb, var(--mint) 45%, transparent), transparent 70%),
-    linear-gradient(160deg, #FFFDF8 0%, var(--color-cream) 45%, color-mix(in srgb, var(--mint) 25%, var(--color-cream)) 100%);
 }
 .hero-bg > * { position: absolute; }
-
-.hb-blob { border-radius: 50%; filter: blur(70px); will-change: transform; }
-.hb-blob-1 { width: 46vw; height: 46vw; left: 52%; top: -6%;  background: color-mix(in srgb, var(--mint) 80%, transparent); animation: hbDriftA 48s ease-in-out infinite alternate; }
-.hb-blob-2 { width: 30vw; height: 30vw; left: 70%; top: 45%;  background: rgba(255,255,255,.75);                          animation: hbDriftB 56s ease-in-out infinite alternate; }
-.hb-blob-3 { width: 34vw; height: 34vw; left: -10%; top: 62%; background: color-mix(in srgb, var(--mint) 55%, transparent); animation: hbDriftB 62s ease-in-out -20s infinite alternate; }
-
-/* Sunlight: soft rays from the top-right corner, slowly breathing */
-.hb-sun {
-  right: -12%; top: -30%; width: 75vw; height: 75vw;
-  background: repeating-conic-gradient(from 200deg at 100% 0%, rgba(255,255,255,.55) 0deg 4deg, transparent 4deg 11deg);
-  mask-image: radial-gradient(circle at 100% 0%, #000 0%, transparent 62%);
-  filter: blur(14px); opacity: .55;
-  animation: hbSun 14s ease-in-out infinite alternate;
-}
 
 .hb-flow { inset: 0; width: 100%; height: 100%; }
 .hb-flow-a { fill: color-mix(in srgb, var(--mint) 45%, transparent); animation: hbSway 22s ease-in-out infinite alternate; transform-origin: 50% 100%; }
 .hb-flow-b { fill: color-mix(in srgb, var(--mint) 35%, rgba(255,255,255,.4)); animation: hbSway 28s ease-in-out -9s infinite alternate-reverse; transform-origin: 50% 100%; }
-.hb-flow-c { fill: color-mix(in srgb, var(--mint) 28%, transparent); }
-
-.hb-bokeh {
-  translate: -50% -50%; border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,.85) 0%, color-mix(in srgb, var(--mint) 60%, transparent) 55%, transparent 72%);
-  filter: blur(2px);
-  animation: hbBreathe 10s ease-in-out infinite alternate;
-}
 
 .hb-drift { animation-name: hbFloat; animation-timing-function: ease-in-out; animation-iteration-count: infinite; animation-direction: alternate; }
 .hb-drift-dot  { width: 6px; height: 6px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-forest) 35%, transparent), 0 0 12px var(--color-forest); opacity: .7; }
 .hb-drift-leaf { width: 18px; height: 18px; opacity: .5; }
+@media (max-width: 1023px) { .hb-drift-leaf { display: none; } }
+.hb-leaf { opacity: .55; filter: drop-shadow(0 2px 3px color-mix(in srgb, var(--color-forest) 25%, transparent)); }
 
-/* Keeps the text side calm and high-contrast */
-.hb-veil { inset: 0; background: radial-gradient(ellipse 48% 62% at 22% 46%, color-mix(in srgb, var(--color-cream) 88%, transparent) 0%, color-mix(in srgb, var(--color-cream) 55%, transparent) 55%, transparent 80%); }
-@media (max-width: 1023px) {
-  .hb-veil { background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--color-cream) 70%, transparent) 12%, color-mix(in srgb, var(--color-cream) 70%, transparent) 50%, transparent 62%); }
-  .hb-drift-leaf { display: none; }
-}
-
-.hb-grain {
-  inset: 0; opacity: .35; mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .5 0 0 0 0 .42 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Orbit atmosphere: a wide pulsing aura behind the cards */
-.orbit-aura {
-  inset: -16%; border-radius: 50%; pointer-events: none;
-  background: radial-gradient(circle, color-mix(in srgb, var(--color-forest) 16%, transparent) 0%, color-mix(in srgb, var(--color-forest) 7%, transparent) 40%, transparent 68%);
-  animation: orbitIn 1.6s ease both, hbBreathe 9s ease-in-out 1.6s infinite alternate;
-}
-
-@keyframes hbDriftA   { to { transform: translate(-6vw, 5vh) scale(1.08); } }
-@keyframes hbDriftB   { to { transform: translate(5vw, -6vh) scale(.94); } }
-@keyframes hbSun      { from { opacity: .35; } to { opacity: .7; } }
 @keyframes hbSway     { to { transform: translateX(-2%) scaleY(1.06); } }
-@keyframes hbBreathe  { from { opacity: .45; transform: scale(.94); } to { opacity: 1; transform: scale(1.04); } }
 @keyframes hbFloat    { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(-40px, -30px) rotate(40deg); } 100% { transform: translate(30px, -70px) rotate(90deg); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-bg *, .orbit-aura { animation: none !important; }
+  .hero-bg * { animation: none !important; }
 }
 
 /* Magenta accents among the green sparks */

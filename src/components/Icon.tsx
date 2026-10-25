@@ -1,6 +1,6 @@
 import {
   Sprout, Coffee, Flower2, Heart, Users, Sparkles, Brain, Lightbulb, Dog,
-  PersonStanding, BookOpen, Plane, MessagesSquare, Mic, Salad, Presentation, Palette,
+  Plane, MessagesSquare, Mic, Salad, Presentation, Palette,
   type LucideProps,
 } from "lucide-react";
 import type { IconName } from "@/lib/content";
@@ -15,8 +15,6 @@ const icons = {
   brain:     Brain,
   lightbulb: Lightbulb,
   dog:       Dog,
-  yoga:      PersonStanding,
-  book:      BookOpen,
   plane:     Plane,
   chat:      MessagesSquare,
   mic:       Mic,

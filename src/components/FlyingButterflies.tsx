@@ -1,13 +1,8 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
 import { Butterfly } from "@/components/Decor";
 
 /* Butterflies drifting across every page (mounted once in the root layout).
    A fixed, click-through layer: each flyer crosses the viewport on a wavy path (see "Flying butterflies"
-   in globals.css). Negative delays start them mid-flight so the page never loads empty.
-   They stay out of the home hero: the layer is clipped to start below the hero's bottom edge as it scrolls. */
+   in globals.css). Negative delays start them mid-flight so the page never loads empty. */
 
 const MAGENTA = "var(--color-magenta)";
 
@@ -22,34 +17,8 @@ const flyers = [
 ];
 
 export default function FlyingButterflies() {
-  const ref = useRef<HTMLDivElement>(null);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    const layer = ref.current;
-    const hero = document.getElementById("home");
-    if (!layer) return;
-    if (!hero) { layer.style.clipPath = ""; return; }
-
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const bottom = Math.max(0, hero.getBoundingClientRect().bottom);
-      layer.style.clipPath = `inset(${bottom}px 0 0 0)`;
-    };
-    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-    update();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-    };
-  }, [pathname]);
-
   return (
-    <div ref={ref} className="flyers" aria-hidden="true">
+    <div className="flyers" aria-hidden="true">
       {flyers.map((f, i) => (
         <span
           key={i}

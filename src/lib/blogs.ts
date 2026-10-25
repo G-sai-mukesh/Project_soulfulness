@@ -84,7 +84,7 @@ export const blogPosts: BlogPost[] = [
       { type: "quote", text: "Therapy helps you understand yourself. Community helps you remember you're not alone. Most of us need both at different times." },
       { type: "h2", text: "Why the 'middle ground' matters" },
       { type: "p", text: "In many places, mental health still carries stigma. Plenty of young people who are stressed, lonely or burnt out never seek help because a clinic feels too formal, too expensive, or too much like admitting something is 'wrong'. A non-clinical space lowers that barrier. You're not a patient — you're a guest, a member, a friend." },
-      { type: "p", text: "Often, the simple act of being around kind people — sharing a meal, joining a yoga session, listening in a discussion circle — eases the pressure enough for you to think clearly again. And for those who do need professional care, a supportive community can make the first step toward therapy feel less daunting." },
+      { type: "p", text: "Often, the simple act of being around kind people — sharing a meal, joining a weekend workshop, listening in a discussion circle — eases the pressure enough for you to think clearly again. And for those who do need professional care, a supportive community can make the first step toward therapy feel less daunting." },
       { type: "h2", text: "When to choose which" },
       { type: "ul", items: [
         "Choose social wellness when you feel disconnected, stressed, lonely, or simply want more joy and balance in your routine.",
@@ -101,8 +101,8 @@ export const blogPosts: BlogPost[] = [
     category: "Mindfulness",
     date:     "2026-08-27",
     readTime: "6 min read",
-    image:    "/images/exp-yoga.jpg",
-    imageAlt: "A calm yoga session in a sunlit room",
+    image:    "/images/positioning.jpg",
+    imageAlt: "A quiet café table with a pot of coffee by a rainy window",
     keywords: ["mindfulness for work stress", "quick stress relief at work", "burnout prevention tips", "breathing exercises for anxiety"],
     body: [
       { type: "p", text: "You don't need a mountain retreat or an hour of silent meditation to feel calmer. For most of us, the problem isn't a lack of time — it's that stress builds up all day with nowhere to go. Mindfulness gives it an exit." },
@@ -126,8 +126,8 @@ export const blogPosts: BlogPost[] = [
       { type: "p", text: "Walking is moving meditation. Leave the headphones off, notice the sky, the trees, the sounds around you. Many people find their best ideas arrive on exactly these walks." },
       { type: "quote", text: "You can't stop the waves, but you can learn to surf. — Jon Kabat-Zinn" },
       { type: "h2", text: "Make it stick: practise with others" },
-      { type: "p", text: "The hardest part of mindfulness isn't learning it — it's remembering to do it. That's why group practice works so well. Showing up to a weekly yoga or mindfulness session builds the habit, and being around others who are slowing down too makes it easier to let go." },
-      { type: "p", text: "Our weekend Yoga & Mindfulness sessions at Project Soulfulness are designed for complete beginners and busy professionals alike. Come as you are — no mat, experience or flexibility required." },
+      { type: "p", text: "The hardest part of mindfulness isn't learning it — it's remembering to do it. That's why practising alongside others works so well. Showing up somewhere calm every week builds the habit, and being around others who are slowing down too makes it easier to let go." },
+      { type: "p", text: "At Project Soulfulness, our unhurried café, group discussion circles and weekend workshops are designed for busy professionals who want a calmer rhythm. Come as you are — no experience required." },
     ],
   },
   {

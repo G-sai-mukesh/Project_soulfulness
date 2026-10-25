@@ -48,7 +48,7 @@ export default function Navbar() {
         boxShadow:      scrolled ? "0 4px 24px rgba(0,187,101,0.12)" : "none",
       }}
     >
-      <nav className={`max-w-7xl mx-auto px-5 lg:px-10 flex items-center justify-between transition-[height] duration-300 ${scrolled ? "h-[96px] lg:h-[112px]" : "h-[116px] lg:h-[152px]"}`}>
+      <nav className={`max-w-7xl mx-auto px-5 lg:px-10 flex items-center justify-between transition-[height] duration-300 ${scrolled ? "h-[100px] lg:h-[120px]" : "h-[132px] lg:h-[176px]"}`}>
         {/* The logo keeps its size when the bar slims down on scroll; it then hangs below the bar on a white cut-out */}
         <Link href={navHref("#home", onHome)} aria-label="Project Soulfulness home" className="relative z-10 self-start mt-1.5">
           <span
@@ -56,15 +56,15 @@ export default function Navbar() {
             style={{ background: "rgba(255,255,255,0.92)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", boxShadow: "0 10px 20px -8px rgba(0,187,101,0.25)" }}
             aria-hidden="true"
           />
-          <Logo preload className="relative h-[104px] lg:h-[140px]" />
+          <Logo preload className="relative h-[120px] lg:h-[164px]" />
         </Link>
 
-        <ul className="hidden lg:flex items-center gap-6 xl:gap-9">
+        <ul className="hidden lg:flex items-center gap-4 xl:gap-9">
           {navLinks.map((l) => (
             <li key={l.href}>
               <Link
                 href={navHref(l.href, onHome)}
-                className="relative text-sm font-medium transition-colors hover:text-forest"
+                className="relative font-serif text-sm xl:text-base font-semibold transition-colors hover:text-forest"
                 style={{ color: active === l.href ? "var(--color-forest)" : "var(--color-ink)" }}
               >
                 {l.label}
@@ -79,7 +79,7 @@ export default function Navbar() {
 
         <Link
           href="/contact"
-          className="hidden lg:inline-flex items-center gap-2 rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:brightness-95 hover:-translate-y-0.5"
+          className="hidden lg:inline-flex items-center gap-2 rounded-full bg-forest px-4 xl:px-5 py-2.5 font-serif text-sm xl:text-[15px] font-semibold text-white shadow-md transition hover:brightness-95 hover:-translate-y-0.5"
         >
           Be Part of the Journey <ArrowRight size={16} />
         </Link>
@@ -101,7 +101,7 @@ export default function Navbar() {
               key={l.href}
               href={navHref(l.href, onHome)}
               onClick={() => setMenuOpen(false)}
-              className="px-3 py-3 rounded-xl text-base font-medium hover:bg-forest-soft transition-colors"
+              className="px-3 py-3 rounded-xl font-serif text-lg font-semibold hover:bg-forest-soft transition-colors"
               style={{ color: active === l.href ? "var(--color-forest)" : "var(--color-ink)" }}
             >
               {l.label}
@@ -110,7 +110,7 @@ export default function Navbar() {
           <Link
             href="/contact"
             onClick={() => setMenuOpen(false)}
-            className="mt-2 flex items-center justify-center gap-2 rounded-full bg-forest py-3 text-sm font-semibold text-white"
+            className="mt-2 flex items-center justify-center gap-2 rounded-full bg-forest py-3 font-serif text-base font-semibold text-white"
           >
             Be Part of the Journey <ArrowRight size={16} />
           </Link>
