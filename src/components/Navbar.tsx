@@ -48,7 +48,7 @@ export default function Navbar() {
         boxShadow:      scrolled ? "0 4px 24px rgba(0,187,101,0.12)" : "none",
       }}
     >
-      <nav className={`max-w-7xl mx-auto px-5 lg:px-10 flex items-center justify-between transition-[height] duration-300 ${scrolled ? "h-[100px] lg:h-[120px]" : "h-[132px] lg:h-[176px]"}`}>
+      <nav className={`max-w-7xl mx-auto px-5 lg:px-10 flex items-center justify-between transition-[height] duration-300 ${scrolled ? "h-[64px] lg:h-[76px]" : "h-[132px] lg:h-[176px]"}`}>
         {/* The logo keeps its size when the bar slims down on scroll; it then hangs below the bar on a white cut-out */}
         <Link href={navHref("#home", onHome)} aria-label="Project Soulfulness home" className="relative z-10 self-start mt-1.5">
           <span
@@ -79,7 +79,7 @@ export default function Navbar() {
 
         <Link
           href="/contact"
-          className="hidden lg:inline-flex items-center gap-2 rounded-full bg-forest px-4 xl:px-5 py-2.5 font-serif text-sm xl:text-[15px] font-semibold text-white shadow-md transition hover:brightness-95 hover:-translate-y-0.5"
+          className="hidden lg:inline-flex items-center gap-2 rounded-full bg-forest px-4 xl:px-5 py-2.5 font-serif text-sm xl:text-base font-semibold text-white shadow-md transition hover:brightness-95 hover:-translate-y-0.5"
         >
           Be Part of the Journey <ArrowRight size={16} />
         </Link>
@@ -110,7 +110,7 @@ export default function Navbar() {
           <Link
             href="/contact"
             onClick={() => setMenuOpen(false)}
-            className="mt-2 flex items-center justify-center gap-2 rounded-full bg-forest py-3 font-serif text-base font-semibold text-white"
+            className="mt-2 flex items-center justify-center gap-2 rounded-full bg-forest py-3 font-serif text-lg font-semibold text-white"
           >
             Be Part of the Journey <ArrowRight size={16} />
           </Link>
