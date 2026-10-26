@@ -20,16 +20,20 @@ export const siteUrl = "https://projectsoulfulness.com";
 
 /* Photo stack under the hero intro — swap in real photos from the café. */
 export const heroGallery = [
-  { src: "/images/exp-cafe.jpg",       caption: "Coffee & good company" },
-  { src: "/images/exp-bulldog.jpg",    caption: "Our four-legged friends" },
-  { src: "/images/exp-discussion.jpg", caption: "Real conversations" },
-  { src: "/images/exp-comedy.jpg",     caption: "Laughter-filled evenings" },
+  { src: "/images/gallery-music.jpeg",       caption: "Music & good company" },
+  { src: "/images/gallery-coffee-rave.jpeg", caption: "Coffee raves" },
+  { src: "/images/gallery-comedy.jpeg",      caption: "Laughter-filled evenings" },
+  { src: "/images/gallery-bulldog.jpeg",     caption: "Playtime with our pups" },
+  { src: "/images/gallery-trek.jpeg",        caption: "Trails & fresh air" },
+  { src: "/images/gallery-meals.jpeg",       caption: "Wholesome meals" },
+  { src: "/images/gallery-painting.jpeg",    caption: "Paint & sip workshops" },
+  { src: "/images/gallery-games.jpeg",       caption: "Games & giggles" },
 ];
 
 export type IconName =
   | "sprout" | "coffee" | "flower" | "heart" | "users" | "sparkles"
   | "brain" | "lightbulb" | "dog" | "plane"
-  | "chat" | "mic" | "salad" | "talk" | "palette";
+  | "chat" | "music" | "mic" | "salad" | "talk" | "palette";
 
 export const heroPillars: { icon: IconName; label: string }[] = [
   { icon: "sprout", label: "Community Companionship" },
@@ -59,15 +63,16 @@ export const problemSolutionPromise = [
   },
 ];
 
-export const experiences: { id: string; icon: IconName; title: string; desc: string; image: string; accent: string }[] = [
-  { id: "exp-cafe",       icon: "coffee",  title: "Café & Coffee Raving",   desc: "A warm, unhurried coffee culture to linger and connect.",       image: "/images/exp-cafe.jpg",       accent: "#E58A3A" },
-  { id: "exp-bulldog",    icon: "dog",     title: "French Bulldog Adoption", desc: "Companion pets to ease loneliness and build trust.",            image: "/images/exp-bulldog.jpg",    accent: "#00BB65" },
-  { id: "exp-travel",     icon: "plane",   title: "Travel Cluster",          desc: "Curated group trips that turn healing into shared experiences.", image: "/images/exp-travel.jpg",     accent: "#2D8BD8" },
-  { id: "exp-discussion", icon: "chat",    title: "Group Discussions",       desc: "Peer circles to talk, listen, and be heard.",                   image: "/images/exp-discussion.jpg", accent: "#E58A3A" },
-  { id: "exp-comedy",     icon: "mic",     title: "Stand-up Comedy",         desc: "Light-hearted evenings to release tension and laugh.",          image: "/images/exp-comedy.jpg",     accent: "#C32991" },
-  { id: "exp-menu",       icon: "salad",   title: "Curated Healthy Menu",    desc: "Food designed to nourish body and mind.",                       image: "/images/exp-menu.jpg",       accent: "#00BB65" },
-  { id: "exp-talks",      icon: "talk",    title: "Inspirational Talks",     desc: "Sessions with accomplished speakers for perspective.",          image: "/images/exp-talks.jpg",      accent: "#2D8BD8" },
-  { id: "exp-workshop",   icon: "palette", title: "Weekend Workshops",       desc: "Skill-building and self-discovery formats to grow.",            image: "/images/exp-workshop.jpg",   accent: "#C32991" },
+/* `orbitImage` is the photo used in the hero circle animation; `image` is used on the Experiences cards. */
+export const experiences: { id: string; icon: IconName; title: string; desc: string; image: string; orbitImage: string; accent: string }[] = [
+  { id: "exp-cafe",       icon: "coffee",  title: "Café & Coffee Raving",   desc: "A warm, unhurried coffee culture to linger and connect.",       image: "/images/gallery-coffee-rave.jpeg",       orbitImage: "/images/orbit-cafe.jpeg", accent: "#E58A3A" },
+  { id: "exp-bulldog",    icon: "dog",     title: "French Bulldog Adoption", desc: "Companion pets to ease loneliness and build trust.",            image: "/images/gallery-bulldog.jpeg",    orbitImage: "/images/gallery-bulldog.jpeg", accent: "#00BB65" },
+  { id: "exp-travel",     icon: "plane",   title: "Travel Cluster",          desc: "Curated group trips that turn healing into shared experiences.", image: "/images/gallery-trek.jpeg",     orbitImage: "/images/orbit-travel.jpeg", accent: "#2D8BD8" },
+  { id: "exp-discussion", icon: "music",   title: "Jamming Sessions",        desc: "Bring a song, pick up a guitar, or just sing along.",           image: "/images/gallery-music.jpeg", orbitImage: "/images/orbit-discussion.jpeg", accent: "#E58A3A" },
+  { id: "exp-comedy",     icon: "mic",     title: "Stand-up Comedy",         desc: "Light-hearted evenings to release tension and laugh.",          image: "/images/gallery-comedy.jpeg",     orbitImage: "/images/orbit-comedy.jpeg", accent: "#C32991" },
+  { id: "exp-menu",       icon: "salad",   title: "Curated Healthy Menu",    desc: "Food designed to nourish body and mind.",                       image: "/images/exp-meals.jpg",       orbitImage: "/images/orbit-menu.jpeg", accent: "#00BB65" },
+  { id: "exp-talks",      icon: "talk",    title: "Inspirational Talks",     desc: "Sessions with accomplished speakers for perspective.",          image: "/images/exp-comedy.jpg",      orbitImage: "/images/exp-talks.jpg", accent: "#2D8BD8" },
+  { id: "exp-workshop",   icon: "palette", title: "Weekend Workshops",       desc: "Skill-building and self-discovery formats to grow.",            image: "/images/gallery-painting.jpeg",   orbitImage: "/images/orbit-workshop.jpeg", accent: "#C32991" },
 ];
 
 export const audiencePoints = [
@@ -75,6 +80,11 @@ export const audiencePoints = [
   "Relationship trauma and trust issues",
   "Loneliness and companionship struggles",
 ];
+
+/* Events aren't running yet: while this is false the home page and /events show a "Coming soon"
+   preview of the kinds of events planned (no dates, times or booking). Set to true once the
+   real calendar below is ready. */
+export const eventsLive = false;
 
 /* Placeholder schedule — replace dates, times and details with the real calendar.
    Keep them in date order: the home page shows the first four, /events shows them all. */
@@ -164,11 +174,16 @@ export function formatEventTime(hhmm: string) {
   return `${h % 12 || 12}:${String(m).padStart(2, "0")} ${h < 12 ? "AM" : "PM"}`;
 }
 
-/* Placeholder testimonials from the design mock — swap in real member quotes. */
-export const testimonials = [
-  { quote: "This space feels like a warm hug. I've made amazing friends and feel more like myself.", name: "Aarav", age: 26, avatar: "/images/avatar-aarav.jpg" },
-  { quote: "From coffee to deep conversations, everything here just feels right.",                   name: "Meera", age: 24, avatar: "/images/avatar-meera.jpg" },
-  { quote: "A place where I can relax, be myself, and actually feel heard.",                         name: "Rohan", age: 28, avatar: "/images/avatar-rohan.jpg" },
+/* SAMPLE testimonials — written to show the tone, not real people. Replace with genuine quotes
+   (and photos, with permission) from real members before launch.
+   `avatar` is optional: without one, the card shows the person's initial in a brand-coloured circle. */
+export const testimonials: { quote: string; name: string; age: number; role: string; avatar?: string }[] = [
+  { quote: "Moved to Hyderabad for work and didn't know a soul. One filter coffee here turned into a Saturday jamming group I now never miss.", name: "Ananya", age: 25, role: "Product designer, Madhapur" },
+  { quote: "After a 10-hour sprint, this is where I switch off. Nobody asks about deadlines — just good chai, good music and good people.",       name: "Karthik", age: 27, role: "Software engineer, Gachibowli" },
+  { quote: "I came for the French bulldogs, honestly. I stayed for the people. It feels like a second home, not a café.",                     name: "Sneha", age: 23, role: "Postgrad student, Kondapur" },
+  { quote: "The comedy nights are the best stress-buster in the city. I've laughed more here in a month than all of last year.",               name: "Rahul", age: 29, role: "Chartered accountant, Hitech City" },
+  { quote: "I'm an introvert, so I was nervous. Everyone was so kind — no pressure to talk, but I always leave having made a new friend.",     name: "Priya", age: 26, role: "Content writer, Jubilee Hills" },
+  { quote: "The trek with the group was the reset I didn't know I needed. Strangers on the way up, friends by the time we came down.",         name: "Arjun", age: 28, role: "Data analyst, Kukatpally" },
 ];
 
 /* Contact details. `addressShort` is for tight spots like the footer row; both link to `mapsUrl`. */

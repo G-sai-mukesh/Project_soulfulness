@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CalendarDays, Clock, MapPin, Sparkles, Backpack, Heart } from "lucide-react";
+import { ArrowRight, BellRing, CalendarDays, Clock, MapPin, Sparkles, Backpack, Heart } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { contact, events, eventDateParts, formatEventTime, siteUrl, type EventItem } from "@/lib/content";
+import { contact, events, eventDateParts, eventsLive, formatEventTime, siteUrl, type EventItem } from "@/lib/content";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = eventsLive ? {
   title:       "Upcoming Events — Comedy, Workshops, Talks & Community Circles",
   description: "See every upcoming Project Soulfulness event: stand-up comedy nights, discussion circles, workshops, inspirational talks, mindful brunches and more.",
   alternates:  { canonical: "/events" },
@@ -16,7 +16,75 @@ export const metadata: Metadata = {
     type:        "website",
     url:         "/events",
   },
+} : {
+  title:       "Events — Coming Soon",
+  description: "Project Soulfulness events are coming soon: stand-up comedy nights, discussion circles, workshops, inspirational talks and mindful brunches. Get notified when we launch.",
+  alternates:  { canonical: "/events" },
+  openGraph: {
+    title:       "Events at Project Soulfulness — Coming Soon",
+    description: "Comedy nights, workshops, talks and community circles are on the way.",
+    type:        "website",
+    url:         "/events",
+  },
 };
+
+const notifyHref = `mailto:${contact.email}?subject=${encodeURIComponent("Notify me when Project Soulfulness events launch")}`;
+
+/* While events aren't live: a preview of the planned formats, with no dates, times or booking. */
+function PreviewCard({ ev, first }: { ev: EventItem; first: boolean }) {
+  return (
+    <article id={ev.slug} className="scroll-mt-32 flex flex-col overflow-hidden rounded-3xl border border-black/5 bg-paper shadow-lg target:ring-4 target:ring-forest/40">
+      <div className="relative aspect-[16/10]">
+        <Image src={ev.image} alt={ev.title} fill preload={first} className="object-cover" sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" />
+        <span className="absolute left-4 top-4 rounded-full bg-paper/95 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-magenta shadow">Coming soon</span>
+      </div>
+      <div className="flex flex-1 flex-col p-6">
+        <span className="self-start rounded-full bg-magenta-soft px-3 py-1 text-xs font-semibold text-magenta">{ev.category}</span>
+        <h3 className="mt-3 font-serif font-semibold text-xl text-ink">{ev.title}</h3>
+        <p className="font-hand text-xl text-forest">{ev.tagline}</p>
+        <p className="mt-3 text-sm leading-relaxed text-muted">{ev.about}</p>
+        <p className="mt-auto pt-5 flex items-start gap-2 text-sm text-ink/80">
+          <Heart size={16} className="mt-0.5 flex-shrink-0 text-forest" />
+          <span><span className="font-semibold text-ink">Perfect for:</span> {ev.goodFor}</span>
+        </p>
+      </div>
+    </article>
+  );
+}
+
+function ComingSoon() {
+  return (
+    <>
+      <header className="hero-in max-w-2xl">
+        <span className="eyebrow">Events · Coming Soon</span>
+        <h1 className="mt-3 font-serif font-semibold text-4xl lg:text-6xl text-ink">Something lovely is on the way</h1>
+        <p className="mt-5 text-base lg:text-lg leading-relaxed text-muted">
+          We&apos;re putting the finishing touches on our first gatherings — laughter-filled evenings, hands-on
+          workshops and conversations that matter. Leave us your email and you&apos;ll be the first to know when
+          the calendar opens.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <a href={notifyHref} className="inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-forest/25 transition hover:-translate-y-0.5 hover:brightness-95">
+            <BellRing size={16} /> Notify me
+          </a>
+          <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border-2 border-forest px-6 py-3 text-sm font-semibold text-forest transition hover:bg-forest hover:text-white">
+            Ask a question
+          </Link>
+        </div>
+      </header>
+
+      <section className="mt-16" aria-labelledby="planned-heading">
+        <h2 id="planned-heading" className="flex items-center gap-4 font-serif font-semibold text-2xl lg:text-3xl text-ink">
+          What we&apos;re planning
+          <span className="h-px flex-1 bg-forest/20" aria-hidden="true" />
+        </h2>
+        <div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+          {events.map((ev, i) => <PreviewCard key={ev.slug} ev={ev} first={i === 0} />)}
+        </div>
+      </section>
+    </>
+  );
+}
 
 const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const IST = "+05:30";
@@ -84,6 +152,21 @@ function EventCard({ ev, first }: { ev: EventItem; first: boolean }) {
 }
 
 export default function EventsPage() {
+  if (!eventsLive) {
+    return (
+      <>
+        <Navbar />
+        <main className="bg-paper pt-40 lg:pt-52 pb-24">
+          <div className="max-w-6xl mx-auto px-5 lg:px-10">
+            <ComingSoon />
+            <IdeaCta />
+          </div>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
   // Group by month, keeping the calendar order from content.ts
   const byMonth = new Map<string, EventItem[]>();
   for (const ev of events) {
@@ -135,18 +218,24 @@ export default function EventsPage() {
             </section>
           ))}
 
-          <aside className="mt-20 rounded-3xl bg-ink px-7 py-10 lg:px-12 text-center text-white">
-            <h2 className="font-serif font-semibold text-2xl lg:text-3xl">Have an idea for an event?</h2>
-            <p className="mt-3 text-white/80 max-w-lg mx-auto">
-              We love hosting workshops, talks and circles led by our community. Tell us what you&apos;d like to see — or run.
-            </p>
-            <Link href="/contact" className="mt-6 inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5">
-              Get in touch <ArrowRight size={16} />
-            </Link>
-          </aside>
+          <IdeaCta />
         </div>
       </main>
       <Footer />
     </>
+  );
+}
+
+function IdeaCta() {
+  return (
+    <aside className="mt-20 rounded-3xl bg-ink px-7 py-10 lg:px-12 text-center text-white">
+      <h2 className="font-serif font-semibold text-2xl lg:text-3xl">Have an idea for an event?</h2>
+      <p className="mt-3 text-white/80 max-w-lg mx-auto">
+        We love hosting workshops, talks and circles led by our community. Tell us what you&apos;d like to see — or run.
+      </p>
+      <Link href="/contact" className="mt-6 inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5">
+        Get in touch <ArrowRight size={16} />
+      </Link>
+    </aside>
   );
 }

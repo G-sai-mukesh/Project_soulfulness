@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PostMeta from "@/components/PostMeta";
 import { blogPosts, getPost, type BlogBlock } from "@/lib/blogs";
-import { siteUrl } from "@/lib/content";
+import { eventsLive, siteUrl } from "@/lib/content";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -114,7 +114,7 @@ export default async function BlogPostPage({ params }: Props) {
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Link href="/events" className="inline-flex items-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5">
-                See upcoming events <ArrowRight size={16} />
+                {eventsLive ? "See upcoming events" : "Events coming soon"} <ArrowRight size={16} />
               </Link>
               <Link href="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
                 Join the community

@@ -13,11 +13,11 @@ export default function HeroSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-10 pt-40 lg:pt-52 pb-32 lg:pb-40 min-h-[92vh] grid items-center gap-10 lg:gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] xl:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]">
         <div className="max-w-xl">
-          <span className="hero-in eyebrow" style={enter(0.1)}>A Social Wellness Space</span>
+          <span className="hero-in eyebrow text-sm! lg:text-base!" style={enter(0.1)}>A Social Wellness Space</span>
 
           <h1 className="hero-in mt-5 font-sans font-bold leading-[1.02] tracking-tight text-5xl sm:text-6xl lg:text-7xl" style={enter(0.2)}>
-            <span className="text-ink">Good People.</span><br />
-            <span className="text-forest">Better Days.</span>
+            <span className="text-ink">Good People</span><br />
+            <span className="text-forest">Better Days</span>
           </h1>
 
           <p className="hero-in mt-6 text-base sm:text-lg leading-relaxed text-muted max-w-md" style={enter(0.35)}>

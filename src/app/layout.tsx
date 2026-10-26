@@ -39,13 +39,17 @@ export const metadata: Metadata = {
     default:  "Project Soulfulness | Good People. Better Days.",
     template: "%s | Project Soulfulness",
   },
-  description: "A warm social-wellness space — part coffee shop, part community sanctuary — where young people unwind, connect, and find balance.",
-  keywords:    "Project Soulfulness, social wellness, community cafe, mindfulness, loneliness, young adults",
+  description: "A garden café and social-wellness community in Madhapur, Hyderabad — coffee, jamming sessions, comedy nights, French bulldogs, group treks and workshops for young people to unwind and make real friends.",
+  keywords:    "Project Soulfulness, café in Madhapur, pet friendly café Hyderabad, French bulldog café, community café Hyderabad, things to do in Hyderabad, jamming sessions Hyderabad, stand-up comedy Hyderabad, make friends in Hyderabad, social wellness",
   openGraph: {
     title:       "Project Soulfulness | Good People. Better Days.",
-    description: "More than a café. A community for a calmer you.",
+    description: "A garden café and community in Madhapur, Hyderabad. More than a café — a community for a calmer you.",
     type:        "website",
+    locale:      "en_IN",
+    siteName:    "Project Soulfulness",
+    images:      [{ url: "/images/about-garden-bulldogs.jpg", width: 1400, height: 933, alt: "Project Soulfulness garden café with French bulldogs" }],
   },
+  twitter: { card: "summary_large_image", images: ["/images/about-garden-bulldogs.jpg"] },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

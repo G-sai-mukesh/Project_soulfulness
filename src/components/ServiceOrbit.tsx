@@ -9,11 +9,18 @@ import { experiences } from "@/lib/content";
    ring never move relative to each other, and the two radii are far enough apart
    that labels can't collide at any angle. */
 
-// Clockwise from 12 o'clock; services reveal in this order (ring 0 = inner, ring 1 = outer).
-// Four per ring, the inner ring offset 45° from the outer so labels sit between each other.
+// Clockwise from 12 o'clock; photos reveal in this order (ring 0 = inner, ring 1 = outer).
+// Six on the outer ring (60° apart), four on the inner ring offset 45° so they sit between.
 const slots = [
-  { ring: 1, angle: -90 }, { ring: 0, angle: -45 }, { ring: 1, angle: 0 },   { ring: 0, angle: 45 },
-  { ring: 1, angle: 90 },  { ring: 0, angle: 135 }, { ring: 1, angle: 180 }, { ring: 0, angle: 225 },
+  { ring: 1, angle: -90 }, { ring: 0, angle: -45 }, { ring: 1, angle: -30 }, { ring: 1, angle: 30 },
+  { ring: 0, angle: 45 },  { ring: 1, angle: 90 },  { ring: 0, angle: 135 }, { ring: 1, angle: 150 },
+  { ring: 1, angle: 210 }, { ring: 0, angle: 225 },
+];
+
+// Two extra photos beyond the experiences, linking to the experience they belong to.
+const extras = [
+  { id: "exp-cafe",   title: "Café & Coffee Raving", orbitImage: "/images/exp-cafe.jpg" },
+  { id: "exp-comedy", title: "Stand-up Comedy",      orbitImage: "/images/exp-comedy.jpg" },
 ];
 
 const particles = [
@@ -22,7 +29,8 @@ const particles = [
 ];
 
 export default function ServiceOrbit() {
-  const placed = experiences.map((e, i) => ({ ...e, ...slots[i], order: i }));
+  const photos = [...experiences.map(({ id, title, orbitImage }) => ({ id, title, orbitImage })), ...extras];
+  const placed = photos.map((p, i) => ({ ...p, ...slots[i], order: i }));
 
   return (
     <div className="orbit" aria-label="Our experiences">
@@ -48,13 +56,13 @@ export default function ServiceOrbit() {
       {[0, 1].map((ring) => (
         <div key={ring} className={`orbit-ring orbit-ring-${ring}`}>
           {placed.filter((s) => s.ring === ring).map((s) => (
-            <div key={s.id} className="orbit-slot" style={{ ["--a" as string]: `${s.angle}deg`, ["--i" as string]: s.order } as React.CSSProperties}>
+            <div key={s.order} className="orbit-slot" style={{ ["--a" as string]: `${s.angle}deg`, ["--i" as string]: s.order } as React.CSSProperties}>
               <div className="orbit-counter">
                 <span className="orbit-seed" />
                 <div className="orbit-reveal">
                   <a href={`#${s.id}`} className="orbit-card" aria-label={s.title} title={s.title}>
                     <span className="orbit-photo">
-                      <Image src={s.image} alt="" fill sizes="(min-width:1024px) 80px, 14vw" className="object-cover" />
+                      <Image src={s.orbitImage} alt="" fill sizes="(min-width:1024px) 100px, 16vw" className="object-cover" />
                     </span>
                   </a>
                 </div>

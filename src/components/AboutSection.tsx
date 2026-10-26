@@ -36,7 +36,7 @@ export default function AboutSection() {
 
           <div className="reveal-right relative">
             <div className="relative aspect-[16/10] overflow-hidden blob-a shadow-xl">
-              <Image src="/images/about-cafe.jpg" alt="Warm café interior with hanging lights" fill className="object-cover" sizes="(min-width:1024px) 50vw, 100vw" />
+              <Image src="/images/about-garden-bulldogs.jpg" alt="Leafy garden café with a wooden pergola and French bulldogs playing in a fenced play area" fill className="object-cover" sizes="(min-width:1024px) 50vw, 100vw" />
             </div>
             <ul className="relative -mt-14 mx-3 sm:mx-10 sm:ml-auto sm:w-[82%] grid grid-cols-4 rounded-3xl bg-paper/95 shadow-xl backdrop-blur py-5">
               {heroPillars.map((p, i) => (

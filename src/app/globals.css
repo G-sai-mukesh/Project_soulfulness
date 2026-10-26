@@ -377,3 +377,20 @@ html:has(.splash-playing) .flyers { display: none; }
   }
   input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]), textarea { cursor: text; }
 }
+
+/* ───── Testimonial marquee (see Testimonials.tsx) ─────
+   Two identical groups side by side; the track slides left by one group's width, then repeats.
+   Edges fade out; hover or keyboard focus pauses; reduced-motion users get a plain scrollable row. */
+.marquee {
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee-track { display: flex; width: max-content; padding-top: 1rem; padding-bottom: 2.5rem; animation: marquee 60s linear infinite; }
+.marquee-group { display: flex; gap: 1.25rem; padding-right: 1.25rem; }
+.marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee { overflow-x: auto; mask-image: none; -webkit-mask-image: none; }
+  .marquee-track { animation: none; padding-inline: 1.25rem; }
+  .marquee-group[aria-hidden="true"] { display: none; }
+}
