@@ -6,9 +6,10 @@ import Experiences  from "@/components/Experiences";
 import WhoWeServe   from "@/components/WhoWeServe";
 import Positioning  from "@/components/Positioning";
 import Events       from "@/components/Events";
-import Testimonials from "@/components/Testimonials";
+import LatestBlogs  from "@/components/LatestBlogs";
 import Footer       from "@/components/Footer";
 import { contact, siteUrl } from "@/lib/content";
+import { blogPosts, formatPostDate } from "@/lib/blogs";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
@@ -36,6 +37,12 @@ const localBusiness = {
 };
 
 export default function Home() {
+  // Newest three posts, trimmed to what the cards need (keeps full article bodies out of the page bundle)
+  const latestPosts = [...blogPosts]
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 3)
+    .map(({ slug, title, excerpt, category, date, readTime, image, imageAlt }) => ({ slug, title, excerpt, category, date, dateText: formatPostDate(date), readTime, image, imageAlt }));
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness).replace(/</g, "\\u003c") }} />
@@ -47,7 +54,8 @@ export default function Home() {
         <WhoWeServe />
         <Positioning />
         <Events />
-        <Testimonials />
+        {/* Testimonials are hidden until we have real member reviews — swap back in after launch */}
+        <LatestBlogs posts={latestPosts} />
       </main>
       <Footer />
     </>
