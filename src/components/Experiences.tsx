@@ -15,7 +15,7 @@ export default function Experiences() {
         <div className="reveal flex flex-wrap items-end justify-between gap-6">
           <div>
             <span className="eyebrow">Experiences</span>
-            <h2 className="mt-3 font-sans font-bold text-3xl lg:text-5xl text-ink">Eight Ways to a Happier You</h2>
+            <h2 className="mt-3 font-sans font-bold text-3xl lg:text-5xl text-ink">Meaningful Experiences for a Happier Life</h2>
             <p className="mt-3 text-base text-muted">Complementary offerings that create a low-pressure, socially rich environment.</p>
           </div>
           <a

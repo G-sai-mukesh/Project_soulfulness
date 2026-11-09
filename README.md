@@ -141,7 +141,7 @@ Content is separated from layout, so most updates don't require touching any com
 
 ### Blog posts — `src/lib/blogs.ts`
 
-Add an entry to `blogPosts` and the blog listing, the article page, the home page's "From Our Journal" section and the sitemap all update automatically. Each post supports a title, excerpt (used as the meta description), category, date, read time, cover image, keywords and a body made of paragraphs, headings, lists and quotes.
+Add an entry to `blogPosts` and the blog listing, the article page, the home page's "Recent Blogs" section and the sitemap all update automatically. Each post supports a title, excerpt (used as the meta description), category, date, read time, cover image, keywords and a body made of paragraphs, headings, lists and quotes.
 
 > Keep cover images under ~1600px wide and a few hundred KB — images are served as-is.
 
