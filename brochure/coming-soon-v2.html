@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Project Soulfulness — Coming Soon v2 (A5)</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+  /* Layout follows the LIV EMS "Front page (A6) – White" reference; colours are Soulfulness brand tokens */
+  :root {
+    --forest: #00BB65; --ink: #1F2420; --muted: #5E665F; --magenta: #C32991; --cream: #F8F3E9;
+    --tile: color-mix(in srgb, #00BB65 7%, #F7F7F4);
+    --line: color-mix(in srgb, #1F2420 10%, white);
+  }
+  @page { size: 148mm 210mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Outfit", sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .sheet { position: relative; overflow: hidden; width: 148mm; height: 210mm; background: #fff; }
+  .sheet > * { position: absolute; }
+  svg.i { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .label { font-size: 6.6pt; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--magenta); }
+
+  /* header */
+  .logo { left: 9mm; top: 8mm; width: 50mm; filter: drop-shadow(0 1.6mm 3mm color-mix(in srgb, var(--forest) 30%, transparent)); }
+  .contact { right: 9mm; top: 11mm; text-align: right; }
+  .contact .num { font-size: 15pt; font-weight: 800; letter-spacing: .01em; line-height: 1.1; margin-top: .6mm; }
+  .contact .mail { font-size: 9pt; font-weight: 700; margin-top: .6mm; }
+  .contact .gap { height: 5mm; }
+  .soonpill { right: 9mm; top: 45mm; display: inline-flex; align-items: center; gap: 1.6mm; background: color-mix(in srgb, var(--magenta) 9%, white);
+              color: var(--magenta); font-size: 6.6pt; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; padding: 1.6mm 3.2mm; border-radius: 99px; }
+  .soonpill i { width: 1.6mm; height: 1.6mm; border-radius: 50%; background: var(--magenta); }
+
+  .title { left: 0; right: 0; top: 63mm; text-align: center; }
+  .title .label { letter-spacing: .26em; }
+  .title h1 { margin-top: 1mm; font-size: 34pt; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+  .title h1 span { color: var(--forest); }
+  .title p { margin-top: 1.6mm; font-size: 8.6pt; color: var(--muted); }
+
+  /* services grid */
+  .svc-h { left: 0; right: 0; top: 91mm; text-align: center; }
+  .grid { left: 9mm; right: 9mm; top: 96mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.4mm; }
+  .tile { height: 18.6mm; border-radius: 2.6mm; background: var(--tile); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.8mm; }
+  .tile svg.i { font-size: 15pt; color: var(--forest); }
+  .tile.m svg.i { color: var(--magenta); }
+  .tile span { font-size: 8pt; font-weight: 500; }
+
+  /* highlight card */
+  .card { left: 9mm; right: 9mm; top: 141mm; border: .3mm solid var(--line); border-radius: 3mm; padding: 3.8mm 4mm 4.2mm; }
+  .card .row { display: flex; align-items: center; gap: 2.6mm; }
+  .card .badge { background: var(--magenta); color: #fff; font-weight: 800; font-size: 9pt; padding: .9mm 2.6mm; border-radius: 1.4mm; letter-spacing: .02em; }
+  .card .head { font-size: 10.4pt; font-weight: 700; }
+  .card .tags { margin-top: 3mm; display: flex; flex-wrap: wrap; align-items: center; gap: 1.4mm; }
+  .card .tags .label { color: var(--muted); font-size: 6pt; margin-right: .6mm; }
+  .card .tags b { background: var(--ink); color: #fff; font-size: 6.6pt; font-weight: 600; padding: .9mm 2.4mm; border-radius: 99px; }
+
+  /* footer band */
+  .band { left: 0; right: 0; bottom: 0; height: 37mm; background: var(--forest); color: #fff; }
+  .band .left { position: absolute; left: 9mm; top: 7mm; right: 52mm; }
+  .band .row { display: flex; align-items: center; gap: 3mm; }
+  .band .row img { width: 13mm; height: 13mm; border-radius: 50%; border: .7mm solid #fff; }
+  .band h2 { font-size: 13.5pt; font-weight: 800; line-height: 1.05; }
+  .band .hand { margin-top: 2.6mm; font-family: "Caveat", cursive; font-size: 12.5pt; font-weight: 700; line-height: 1; }
+  .band .small { margin-top: 2mm; font-size: 7pt; font-weight: 500; opacity: .95; }
+  .band .qr { position: absolute; right: 9mm; top: 4.6mm; width: 32mm; text-align: center; }
+  .band .qrbox { width: 25mm; height: 25mm; margin: 0 auto; border-radius: 2.4mm; background: #fff; display: grid; place-items: center;
+                 font-size: 6pt; color: #9AA19B; text-align: center; line-height: 1.3; }
+  .band .qr span { display: block; margin-top: 1.4mm; font-size: 7.6pt; font-weight: 700; }
+
+  .bfly { width: 7mm; height: 5.6mm; }
+</style>
+</head>
+<body>
+<!-- Lucide icons (same set the website uses) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="sprout" viewBox="0 0 24 24"><path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3"/><path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4"/><path d="M5 21h14"/></symbol>
+  <symbol id="coffee" viewBox="0 0 24 24"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></symbol>
+  <symbol id="flower" viewBox="0 0 24 24"><path d="M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1"/><circle cx="12" cy="8" r="2"/><path d="M12 10v12"/><path d="M12 22c4.2 0 7-1.667 7-5-4.2 0-7 1.667-7 5Z"/><path d="M12 22c-4.2 0-7-1.667-7-5 4.2 0 7 1.667 7 5Z"/></symbol>
+  <symbol id="heart" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></symbol>
+  <symbol id="dog" viewBox="0 0 24 24"><path d="M11.25 16.25h1.5L12 17z"/><path d="M16 14v.5"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444a11.702 11.702 0 0 0-.493-3.309"/><path d="M8 14v.5"/><path d="M8.5 8.5c-.384 1.05-1.083 2.028-2.344 2.5-1.931.722-3.576-.297-3.656-1-.113-.994 1.177-6.53 4-7 1.923-.321 3.651.845 3.651 2.235A7.497 7.497 0 0 1 14 5.277c0-1.39 1.844-2.598 3.767-2.277 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5"/></symbol>
+  <symbol id="yoga" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/><path d="M12 10v4"/></symbol>
+  <symbol id="book" viewBox="0 0 24 24"><path d="M12 5v16"/><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z"/></symbol>
+  <symbol id="plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+  <symbol id="chat" viewBox="0 0 24 24"><path d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/><path d="M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1"/></symbol>
+  <symbol id="mic" viewBox="0 0 24 24"><path d="M12 19v3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><rect x="9" y="2" width="6" height="13" rx="3"/></symbol>
+  <symbol id="salad" viewBox="0 0 24 24"><path d="M7 21h10"/><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M11.38 12a2.4 2.4 0 0 1-.4-4.77 2.4 2.4 0 0 1 3.2-2.77 2.4 2.4 0 0 1 3.47-.63 2.4 2.4 0 0 1 3.37 3.37 2.4 2.4 0 0 1-1.1 3.7 2.51 2.51 0 0 1 .03 1.1"/><path d="m13 12 4-4"/><path d="M10.9 7.25A3.99 3.99 0 0 0 4 10c0 .73.2 1.41.54 2"/></symbol>
+  <symbol id="talk" viewBox="0 0 24 24"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></symbol>
+  <symbol id="palette" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></symbol>
+  <symbol id="phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
+  <symbol id="mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol>
+
+  <!-- Butterfly line-art from src/components/Decor.tsx -->
+  <symbol id="butterfly" viewBox="0 0 40 32">
+    <g fill="#FFFFFF" stroke="#00BB65" stroke-width="1.2" stroke-linejoin="round">
+      <path d="M20 16C14 3 3 2 4 11c1 7 9 7 16 5Z"/><path d="M20 16C26 3 37 2 36 11c-1 7-9 7-16 5Z"/>
+      <path d="M20 16c-5 4-11 10-8 13 3 2 6-5 8-13Z"/><path d="M20 16c5 4 11 10 8 13-3 2-6-5-8-13Z"/>
+    </g>
+    <path d="M20 10v15M20 10l-3-5M20 10l3-5" fill="none" stroke="#00BB65" stroke-width="1.3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="butterfly-m" viewBox="0 0 40 32">
+    <g fill="#FFFFFF" stroke="#C32991" stroke-width="1.2" stroke-linejoin="round">
+      <path d="M20 16C14 3 3 2 4 11c1 7 9 7 16 5Z"/><path d="M20 16C26 3 37 2 36 11c-1 7-9 7-16 5Z"/>
+      <path d="M20 16c-5 4-11 10-8 13 3 2 6-5 8-13Z"/><path d="M20 16c5 4 11 10 8 13-3 2-6-5-8-13Z"/>
+    </g>
+    <path d="M20 10v15M20 10l-3-5M20 10l3-5" fill="none" stroke="#C32991" stroke-width="1.3" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+
+<section class="sheet">
+  <img class="logo" src="../public/images/logo.png" alt="Project Soulfulness">
+
+  <div class="contact">
+    <div class="label">Call / WhatsApp</div>
+    <div class="num">+91 79938 37007</div>
+    <div class="gap"></div>
+    <div class="label">Write to us</div>
+    <div class="mail">contact@projectsoulfulness.com</div>
+  </div>
+  <div class="soonpill"><i></i>Opening Soon</div>
+  <svg class="bfly" style="left:58mm;top:12mm;transform:rotate(14deg)"><use href="#butterfly-m"/></svg>
+
+  <div class="title">
+    <div class="label">Project Soulfulness</div>
+    <h1>Coming <span>Soon</span></h1>
+    <p>A social wellness space — more than a café, a community for a calmer you.</p>
+  </div>
+
+  <div class="svc-h label">Our Experiences</div>
+  <div class="grid">
+    <div class="tile"><svg class="i"><use href="#coffee"/></svg><span>Café &amp; Coffee</span></div>
+    <div class="tile m"><svg class="i"><use href="#salad"/></svg><span>Healthy Menu</span></div>
+    <div class="tile"><svg class="i"><use href="#yoga"/></svg><span>Yoga Space</span></div>
+    <div class="tile m"><svg class="i"><use href="#book"/></svg><span>Library Space</span></div>
+    <div class="tile"><svg class="i"><use href="#dog"/></svg><span>French Bulldog Adoption</span></div>
+    <div class="tile m"><svg class="i"><use href="#chat"/></svg><span>Group Discussions</span></div>
+  </div>
+
+  <div class="card">
+    <div class="row"><span class="badge">EVERY WEEK</span><span class="head">Events that lift your spirit</span></div>
+    <div class="tags">
+      <span class="label">Featuring:</span>
+      <b>Stand-up Comedy</b><b>Inspirational Talks</b><b>Weekend Workshops</b><b>Travel Cluster</b>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="left">
+      <div class="row">
+        <img src="../public/images/logo.png" alt="">
+        <h2>Register your<br>interest today</h2>
+      </div>
+      <div class="hand">want more details? scan the QR →</div>
+      <div class="small">Good People. Better Days.</div>
+    </div>
+    <div class="qr">
+      <div class="qrbox"></div>
+      <span>Scan to Register</span>
+    </div>
+  </div>
+</section>
+</body>
+</html>

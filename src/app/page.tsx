@@ -6,7 +6,7 @@ import Experiences  from "@/components/Experiences";
 import WhoWeServe   from "@/components/WhoWeServe";
 import Positioning  from "@/components/Positioning";
 import Events       from "@/components/Events";
-import Testimonials from "@/components/Testimonials";
+import RecentBlogs  from "@/components/RecentBlogs";
 import Footer       from "@/components/Footer";
 import { contact, siteUrl } from "@/lib/content";
 
@@ -47,7 +47,7 @@ export default function Home() {
         <WhoWeServe />
         <Positioning />
         <Events />
-        <Testimonials />
+        <RecentBlogs />
       </main>
       <Footer />
     </>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Project Soulfulness — Coming Soon v3 (A5)</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+  /* Layout follows the Pinterest "Our Menu" reference. Colours are Soulfulness tokens only:
+     the background is the logo green deepened with the brand ink so cream text stays readable. */
+  :root {
+    --forest: #00BB65; --ink: #1F2420; --cream: #F8F3E9; --magenta: #C32991;
+    --deep: #00BB65; /* exact logo green */
+  }
+  @page { size: 148mm 210mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Outfit", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .sheet { position: relative; overflow: hidden; width: 148mm; height: 210mm; background: var(--deep); color: #fff; }
+  .sheet > * { position: absolute; }
+
+  /* distressed texture like the reference */
+  .tex { inset: 0; width: 100%; height: 100%; }
+  .blot { border-radius: 50%; filter: blur(6mm); }
+
+  .top { left: 0; right: 0; top: 6mm; text-align: center; font-size: 7.6pt; font-weight: 500; letter-spacing: .06em; }
+  .ghost { left: 50%; top: 14mm; translate: -50% 0; font-size: 150pt; font-weight: 900; line-height: .8; letter-spacing: -.02em;
+           color: var(--cream); opacity: .085; white-space: nowrap; }
+  .hdr { left: 0; top: 0; width: 148mm; height: 44mm; z-index: 1; }
+  .logo { left: 7mm; top: 5mm; width: 29mm; z-index: 2; filter: drop-shadow(0 1.4mm 3mm color-mix(in srgb, #00BB65 35%, transparent)); }
+  .psst { left: 41mm; top: 7.4mm; z-index: 2; white-space: nowrap; font-family: "Caveat", cursive; font-weight: 700; font-size: 15pt; line-height: 1; color: var(--magenta); }
+  .title { left: 41mm; right: 5mm; top: 13.6mm; z-index: 2; font-size: 25pt; font-weight: 800; line-height: .98; letter-spacing: -.02em; color: var(--ink); }
+  .title span { color: var(--forest); }
+  .tag { left: 0; right: 0; top: 39.8mm; text-align: center; }
+  .tag span { display: inline-block; background: var(--magenta); color: #fff; font-size: 6.6pt; font-weight: 700; letter-spacing: .2em;
+              text-transform: uppercase; padding: 1.1mm 3.4mm; border-radius: 99px; }
+
+  /* cream spine with alternating "bites" */
+  svg.spine { inset: 0; width: 100%; height: 100%; }
+  .bite { height: 25mm; }
+  .bite.r { left: 69mm; right: 0; }
+  .bite.l { left: 0; width: 79mm; }
+  .bite h3 { font-size: 14pt; font-weight: 700; white-space: nowrap; letter-spacing: -.01em; line-height: 1; text-shadow: 0 .3mm 1.2mm rgba(31,36,32,.25); }
+  .bite p  { margin-top: 1.6mm; font-size: 7.4pt; font-weight: 500; line-height: 1.4; text-shadow: 0 .2mm .8mm rgba(31,36,32,.3); }
+  .bite.r .txt { position: absolute; left: 8mm; right: 9mm; top: 50%; translate: 0 -50%; }
+  .bite.l .txt { position: absolute; left: 19mm; right: 9mm; top: 50%; translate: 0 -50%; }
+  .ph { width: 30mm; height: 30mm; border-radius: 50%; overflow: hidden; box-shadow: 0 2mm 5mm rgba(0,0,0,.28); }
+  .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* register card at the foot of the spine */
+  .reg { left: 18mm; right: 18mm; top: 168mm; height: 35mm; background: var(--cream); color: var(--ink); border-radius: 6mm;
+         display: flex; align-items: center; gap: 4mm; padding: 0 4.5mm 0 6mm; }
+  .reg .t { flex: 1; }
+  .reg .q { font-size: 11.5pt; font-weight: 800; line-height: 1.12; }
+  .reg .q span { color: var(--magenta); }
+  .reg .hand { margin-top: 1.8mm; font-family: "Caveat", cursive; font-size: 13.5pt; font-weight: 700; color: var(--forest); line-height: 1; }
+  .reg .small { margin-top: 1.4mm; font-size: 6.4pt; color: #5E665F; }
+  .qrbox { flex: none; width: 27mm; height: 27mm; border-radius: 2.4mm; background: #fff; border: .35mm solid color-mix(in srgb, var(--ink) 15%, white); }
+
+  .vert { top: 50%; font-size: 7pt; font-weight: 500; letter-spacing: .04em; white-space: nowrap; font-weight: 600; }
+  .vert.r { right: 4.2mm; translate: 50% -50%; rotate: 90deg; }
+  .vert.l { left: 4.2mm; translate: -50% -50%; rotate: -90deg; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7"/>
+      <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.1 -.62"/>
+    </filter>
+    <filter id="scuff" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".012 .02" numOctaves="4" seed="3"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1.6 -.75"/>
+    </filter>
+  </defs>
+</svg>
+
+<section class="sheet">
+  <div class="blot" style="left:-20mm;top:60mm;width:70mm;height:90mm;background:color-mix(in srgb, var(--forest) 16%, transparent)"></div>
+  <div class="blot" style="right:-24mm;top:4mm;width:70mm;height:60mm;background:color-mix(in srgb, var(--forest) 12%, transparent)"></div>
+  <div class="blot" style="right:-10mm;top:120mm;width:60mm;height:70mm;background:color-mix(in srgb, var(--ink) 35%, transparent)"></div>
+  <img class="tex" src="grunge.png" alt="">
+
+  <svg class="hdr" viewBox="0 0 148 44" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 0 H148 V34 C120 44 96 42 72 37 C46 31 22 32 0 40 Z" fill="#F8F3E9"/>
+    <path d="M148 34 C120 44 96 42 72 37 C46 31 22 32 0 40" fill="none" stroke="#C32991" stroke-width=".8"/>
+  </svg>
+  <img class="logo" src="../public/images/logo.png" alt="Project Soulfulness">
+  <div class="psst">Psst… something soulful is brewing</div>
+  <div class="title">Something exciting<br><span>is coming soon.</span></div>
+
+  <svg class="spine" viewBox="0 0 148 210" aria-hidden="true">
+    <mask id="bites"><rect width="148" height="210" fill="#fff"/><rect x="69" y="52.5" width="100" height="25" rx="12.5" fill="#000"/><rect x="-21" y="81.5" width="100" height="25" rx="12.5" fill="#000"/><rect x="69" y="110.5" width="100" height="25" rx="12.5" fill="#000"/><rect x="-21" y="139.5" width="100" height="25" rx="12.5" fill="#000"/></mask>
+    <path d="M61 59 a13 13 0 0 1 26 0 V171 H61 Z" fill="#F8F3E9" mask="url(#bites)"/>
+  </svg>
+
+  <!-- row 1: photo left, text right -->
+  <div class="ph" style="left:32mm;top:50mm"><img src="../public/images/exp-cafe.jpg" alt=""></div>
+  <div class="bite r" style="top:52.5mm"><div class="txt"><h3>Café &amp; Healthy Menu</h3><p>Coffee raving and food designed to nourish body and mind.</p></div></div>
+
+  <!-- row 2: text left, photo right -->
+  <div class="bite l" style="top:81.5mm"><div class="txt"><h3>Stand-up &amp; Jamming</h3><p>Comedy nights to laugh it out, and open jam sessions to sing, play and unwind.</p></div></div>
+  <div class="ph" style="left:86mm;top:79mm"><img src="../public/images/exp-comedy.jpg" alt=""></div>
+
+  <!-- row 3: photo left, text right -->
+  <div class="ph" style="left:32mm;top:108mm"><img src="../public/images/exp-bulldog.jpg" alt="" style="object-position:50% 35%"></div>
+  <div class="bite r" style="top:110.5mm"><div class="txt"><h3>Companionship</h3><p>French bulldog adoption and group discussion circles.</p></div></div>
+
+  <!-- row 4: text left, photo right -->
+  <div class="bite l" style="top:139.5mm"><div class="txt"><h3>Weekend Experiences</h3><p>Inspiring talks, hands-on workshops and curated group trips.</p></div></div>
+  <div class="ph" style="left:86mm;top:137mm"><img src="../public/images/exp-travel.jpg" alt=""></div>
+
+  <div class="reg">
+    <div class="t">
+      <div class="q">Want more details<br>or to <span>register?</span></div>
+      <div class="hand">scan the QR code →</div>
+      <div class="small">Good People. Better Days.</div>
+    </div>
+    <div class="qrbox"></div>
+  </div>
+
+  <div class="vert r">contact@projectsoulfulness.com</div>
+  <div class="vert l">+91 79938 37007</div>
+</section>
+</body>
+</html>

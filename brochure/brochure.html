@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Project Soulfulness — Coming Soon (A5)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,500&family=Caveat:wght@500;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  /* Brand tokens — copied from src/app/globals.css */
+  :root {
+    --forest:  #00BB65;
+    --forest-soft: color-mix(in srgb, #00BB65 10%, white);
+    --forest-tint: color-mix(in srgb, #00BB65 22%, white);
+    --cream:   #F8F3E9;
+    --paper:   #FFFFFF;
+    --ink:     #1F2420;
+    --muted:   #5E665F;
+    --peach:   #FDF1E8;
+    --magenta: #C32991;
+    --magenta-soft: color-mix(in srgb, #C32991 7%, white);
+    --magenta-tint: color-mix(in srgb, #C32991 18%, white);
+  }
+
+  @page { size: 148mm 210mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #d9d4ca; }
+  body {
+    font-family: "Outfit", system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .sheet {
+    position: relative; overflow: hidden;
+    width: 148mm; height: 210mm;
+    margin: 10mm auto; background: var(--cream);
+    box-shadow: 0 6px 30px rgba(0,0,0,.15);
+    page-break-after: always; break-after: page;
+  }
+  @media print {
+    html, body { background: none; }
+    .sheet { margin: 0; box-shadow: none; }
+  }
+
+  svg.i { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+  .eyebrow { font-size: 6.6pt; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--magenta); }
+  .hand    { font-family: "Caveat", cursive; }
+  .script  { font-family: "Dancing Script", cursive; }
+
+  /* ── soft backdrop: bokeh in brand tints ── */
+  .bokeh { position: absolute; border-radius: 50%; filter: blur(2px); }
+
+  /* ════════════ FRONT ════════════ */
+  .front .top {
+    position: absolute; top: 9mm; left: 10mm; right: 10mm;
+    display: flex; justify-content: space-between; align-items: center; z-index: 3;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 1.6mm;
+    background: var(--magenta); color: #fff;
+    font-size: 6.6pt; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+    padding: 1.6mm 3.4mm; border-radius: 99px;
+  }
+  .pill .dot { width: 1.6mm; height: 1.6mm; border-radius: 50%; background: #fff; box-shadow: 0 0 0 .8mm rgba(255,255,255,.35); }
+
+  .front .photo {
+    position: absolute; right: -6mm; top: 20mm; width: 84mm; height: 92mm;
+    border-radius: 22mm 8mm 26mm 8mm; overflow: hidden;
+    box-shadow: 0 6mm 14mm rgba(0,187,101,.22);
+    border: 1.6mm solid #fff;
+  }
+  .front .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 40% 50%; }
+
+  .front .logo {
+    position: absolute; left: 8mm; top: 21mm; width: 54mm; z-index: 4;
+    filter: drop-shadow(0 4mm 7mm rgba(0,187,101,.3));
+  }
+
+  .note {
+    position: absolute; z-index: 5;
+    background: #fff; padding: 2.4mm 4mm 2.8mm; border-radius: 3mm;
+    box-shadow: 0 2mm 6mm rgba(31,36,32,.12);
+    font-family: "Caveat", cursive; font-weight: 700; color: var(--magenta); line-height: 1;
+  }
+  .front .note { right: 8mm; top: 103mm; font-size: 15pt; transform: rotate(-5deg); }
+
+  .front .copy { position: absolute; left: 10mm; right: 10mm; top: 117mm; z-index: 3; }
+  .front .tease { font-family: "Caveat", cursive; font-weight: 700; font-size: 17pt; color: var(--magenta); line-height: 1; }
+  .front h1 {
+    margin-top: 1.5mm;
+    font-weight: 800; font-size: 31pt; line-height: .98; letter-spacing: -.02em;
+  }
+  .front h1 .g { color: var(--forest); }
+  .front .lede { margin-top: 3.5mm; font-size: 9pt; line-height: 1.5; color: var(--muted); max-width: 112mm; }
+  .front .lede b { color: var(--ink); font-weight: 600; }
+
+  .pillars {
+    position: absolute; left: 10mm; right: 10mm; top: 170mm; z-index: 3;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .pillars li { list-style: none; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 1.5mm; }
+  .pillars li + li { border-left: .25mm solid color-mix(in srgb, var(--forest) 22%, transparent); }
+  .pillars svg.i { font-size: 17pt; color: var(--forest); stroke-width: 1.5; }
+  .pillars span { margin-top: 1.6mm; font-size: 6.6pt; font-weight: 500; line-height: 1.2; color: color-mix(in srgb, var(--ink) 82%, transparent); }
+
+  .front .foot { position: absolute; left: 0; right: 0; bottom: 0; height: 26mm; z-index: 2; }
+  .front .foot svg.wave { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .front .foot .row {
+    position: absolute; left: 10mm; right: 10mm; bottom: 6mm;
+    display: flex; justify-content: space-between; align-items: flex-end; color: #fff;
+  }
+  .front .foot .tag { font-weight: 700; font-size: 12pt; letter-spacing: -.01em; }
+  .front .foot .soon { font-family: "Caveat", cursive; font-weight: 700; font-size: 14pt; }
+
+  .bfly { position: absolute; z-index: 6; }
+
+  /* ════════════ BACK ════════════ */
+  .back .head { position: absolute; left: 10mm; right: 10mm; top: 9mm; }
+  .back h2 { margin-top: 1.6mm; font-weight: 800; font-size: 19pt; line-height: 1.02; letter-spacing: -.02em; }
+  .back h2 .g { color: var(--forest); }
+  .back h2 .m { color: var(--magenta); }
+  .back .sub { margin-top: 2mm; font-size: 8pt; line-height: 1.45; color: var(--muted); max-width: 100mm; }
+
+  .back .head .num {
+    position: absolute; right: 0; top: 0;
+    width: 22mm; height: 22mm; border-radius: 50%;
+    background: var(--forest); color: #fff;
+    display: grid; place-items: center; text-align: center;
+    transform: rotate(8deg);
+    box-shadow: 0 2mm 5mm rgba(0,187,101,.3);
+  }
+  .back .head .num b { display: block; font-size: 17pt; font-weight: 800; line-height: .9; }
+  .back .head .num small { display: block; font-family: "Caveat", cursive; font-size: 10pt; font-weight: 700; line-height: 1; }
+
+  .grid {
+    position: absolute; left: 8mm; right: 8mm; top: 43mm;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm;
+  }
+  .card {
+    display: flex; align-items: center; gap: 2.6mm;
+    padding: 2mm; border-radius: 4mm; height: 21.6mm;
+    background: #fff;
+    border: .25mm solid color-mix(in srgb, var(--forest) 14%, transparent);
+  }
+  .card.m { border-color: color-mix(in srgb, var(--magenta) 16%, transparent); }
+  .card.p { border-color: color-mix(in srgb, #E9B48A 45%, transparent); }
+  .thumb { position: relative; flex: none; width: 17.6mm; height: 17.6mm; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 6mm 2.2mm 6mm 2.2mm; }
+  .chip {
+    position: absolute; right: -1.6mm; bottom: -1.2mm;
+    width: 6.6mm; height: 6.6mm; border-radius: 50%;
+    display: grid; place-items: center; color: #fff; font-size: 9pt;
+    border: .6mm solid #fff; background: var(--forest);
+  }
+  .card.m .chip { background: var(--magenta); }
+  .card.p .chip { background: var(--ink); }
+  .card h3 { font-size: 8.2pt; font-weight: 700; line-height: 1.12; }
+  .card p  { margin-top: .9mm; font-size: 6.5pt; line-height: 1.35; color: var(--muted); }
+
+  .promise {
+    position: absolute; left: 10mm; right: 10mm; top: 166.5mm;
+    display: flex; align-items: center; gap: 3mm;
+    font-family: "Lora", Georgia, serif; font-style: italic; font-size: 8.4pt; line-height: 1.4; color: var(--ink);
+  }
+  .promise svg.i { font-size: 13pt; color: var(--magenta); }
+  .promise em { color: var(--forest); font-style: italic; font-weight: 600; }
+
+  .back .foot { position: absolute; left: 0; right: 0; bottom: 0; height: 33mm; }
+  .back .foot svg.wave { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .back .foot .inner {
+    position: absolute; left: 10mm; right: 10mm; bottom: 5.5mm;
+    display: flex; align-items: center; gap: 4mm; color: #fff;
+  }
+  .back .foot img { width: 19mm; height: auto; border-radius: 50%; border: .8mm solid #fff; box-shadow: 0 1mm 3mm rgba(0,0,0,.18); }
+  .back .foot .cta { flex: 1; }
+  .back .foot .cta .t { font-weight: 800; font-size: 12.5pt; line-height: 1.05; }
+  .back .foot .cta .s { font-family: "Caveat", cursive; font-weight: 700; font-size: 11.5pt; line-height: 1; margin-top: .6mm; color: #fff; opacity: .95; }
+  .back .foot .contact { display: flex; flex-direction: column; gap: 1.3mm; font-size: 7.4pt; font-weight: 500; }
+  .back .foot .contact div { display: flex; align-items: center; gap: 1.6mm; }
+  .back .foot .contact svg.i { font-size: 9pt; }
+</style>
+</head>
+<body>
+
+<!-- Lucide icons (same set the website uses) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="sprout" viewBox="0 0 24 24"><path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3"/><path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4"/><path d="M5 21h14"/></symbol>
+  <symbol id="coffee" viewBox="0 0 24 24"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></symbol>
+  <symbol id="flower" viewBox="0 0 24 24"><path d="M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1"/><circle cx="12" cy="8" r="2"/><path d="M12 10v12"/><path d="M12 22c4.2 0 7-1.667 7-5-4.2 0-7 1.667-7 5Z"/><path d="M12 22c-4.2 0-7-1.667-7-5 4.2 0 7 1.667 7 5Z"/></symbol>
+  <symbol id="heart" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></symbol>
+  <symbol id="dog" viewBox="0 0 24 24"><path d="M11.25 16.25h1.5L12 17z"/><path d="M16 14v.5"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444a11.702 11.702 0 0 0-.493-3.309"/><path d="M8 14v.5"/><path d="M8.5 8.5c-.384 1.05-1.083 2.028-2.344 2.5-1.931.722-3.576-.297-3.656-1-.113-.994 1.177-6.53 4-7 1.923-.321 3.651.845 3.651 2.235A7.497 7.497 0 0 1 14 5.277c0-1.39 1.844-2.598 3.767-2.277 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5"/></symbol>
+  <symbol id="yoga" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1"/><path d="m9 20 3-6 3 6"/><path d="m6 8 6 2 6-2"/><path d="M12 10v4"/></symbol>
+  <symbol id="book" viewBox="0 0 24 24"><path d="M12 5v16"/><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z"/></symbol>
+  <symbol id="plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+  <symbol id="chat" viewBox="0 0 24 24"><path d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/><path d="M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1"/></symbol>
+  <symbol id="mic" viewBox="0 0 24 24"><path d="M12 19v3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><rect x="9" y="2" width="6" height="13" rx="3"/></symbol>
+  <symbol id="salad" viewBox="0 0 24 24"><path d="M7 21h10"/><path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9Z"/><path d="M11.38 12a2.4 2.4 0 0 1-.4-4.77 2.4 2.4 0 0 1 3.2-2.77 2.4 2.4 0 0 1 3.47-.63 2.4 2.4 0 0 1 3.37 3.37 2.4 2.4 0 0 1-1.1 3.7 2.51 2.51 0 0 1 .03 1.1"/><path d="m13 12 4-4"/><path d="M10.9 7.25A3.99 3.99 0 0 0 4 10c0 .73.2 1.41.54 2"/></symbol>
+  <symbol id="talk" viewBox="0 0 24 24"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></symbol>
+  <symbol id="palette" viewBox="0 0 24 24"><path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/></symbol>
+  <symbol id="phone" viewBox="0 0 24 24"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></symbol>
+  <symbol id="mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></symbol>
+
+  <!-- Butterfly line-art from src/components/Decor.tsx -->
+  <symbol id="butterfly" viewBox="0 0 40 32">
+    <g fill="#FFFFFF" stroke="#00BB65" stroke-width="1.2" stroke-linejoin="round">
+      <path d="M20 16C14 3 3 2 4 11c1 7 9 7 16 5Z"/><path d="M20 16C26 3 37 2 36 11c-1 7-9 7-16 5Z"/>
+      <path d="M20 16c-5 4-11 10-8 13 3 2 6-5 8-13Z"/><path d="M20 16c5 4 11 10 8 13-3 2-6-5-8-13Z"/>
+    </g>
+    <path d="M20 10v15M20 10l-3-5M20 10l3-5" fill="none" stroke="#00BB65" stroke-width="1.3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="butterfly-m" viewBox="0 0 40 32">
+    <g fill="#FFFFFF" stroke="#C32991" stroke-width="1.2" stroke-linejoin="round">
+      <path d="M20 16C14 3 3 2 4 11c1 7 9 7 16 5Z"/><path d="M20 16C26 3 37 2 36 11c-1 7-9 7-16 5Z"/>
+      <path d="M20 16c-5 4-11 10-8 13 3 2 6-5 8-13Z"/><path d="M20 16c5 4 11 10 8 13-3 2-6-5-8-13Z"/>
+    </g>
+    <path d="M20 10v15M20 10l-3-5M20 10l3-5" fill="none" stroke="#C32991" stroke-width="1.3" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<!-- ═══════════════ FRONT ═══════════════ -->
+<section class="sheet front">
+  <div class="bokeh" style="left:-18mm;top:60mm;width:60mm;height:60mm;background:radial-gradient(circle,var(--forest-tint),transparent 70%)"></div>
+  <div class="bokeh" style="right:-20mm;top:120mm;width:70mm;height:70mm;background:radial-gradient(circle,var(--magenta-soft),transparent 70%)"></div>
+  <div class="bokeh" style="left:40mm;top:-24mm;width:56mm;height:56mm;background:radial-gradient(circle,var(--forest-soft),transparent 70%)"></div>
+
+  <div class="top">
+    <span class="eyebrow">A Social Wellness Space</span>
+    <span class="pill"><span class="dot"></span>Opening Soon</span>
+  </div>
+
+  <div class="photo"><img src="../public/images/hero.jpg" alt=""></div>
+  <img class="logo" src="../public/images/logo.png" alt="Project Soulfulness">
+
+  <svg class="bfly" style="left:58mm;top:22mm;width:9mm;height:7mm;transform:rotate(14deg)"><use href="#butterfly-m"/></svg>
+  <svg class="bfly" style="left:12mm;top:76mm;width:7mm;height:5.6mm;transform:rotate(-18deg)"><use href="#butterfly"/></svg>
+
+  <div class="note">your new happy place ♡</div>
+
+  <div class="copy">
+    <div class="tease">Psst… something soulful is brewing</div>
+    <h1>Something exciting<br><span class="g">is coming soon.</span></h1>
+    <p class="lede"><b>More than a café — a community for a calmer you.</b> A warm, welcoming space to unwind, connect and find balance, through meaningful experiences, good company and a kinder way of living.</p>
+  </div>
+
+  <ul class="pillars">
+    <li><svg class="i"><use href="#sprout"/></svg><span>Community Companionship</span></li>
+    <li><svg class="i"><use href="#coffee"/></svg><span>Meaningful Conversations</span></li>
+    <li><svg class="i"><use href="#flower"/></svg><span>Mindfulness &amp; Wellness</span></li>
+    <li><svg class="i"><use href="#heart"/></svg><span>A Kinder, Happier You</span></li>
+  </ul>
+
+  <div class="foot">
+    <svg class="wave" viewBox="0 0 560 100" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,40 C120,0 220,8 300,30 C400,58 480,52 560,18 L560,100 L0,100 Z" fill="var(--forest)"/>
+      <path d="M0,40 C120,0 220,8 300,30 C400,58 480,52 560,18" fill="none" stroke="var(--magenta)" stroke-width="3" opacity=".9"/>
+    </svg>
+    <div class="row">
+      <span class="tag">Good People. Better Days.</span>
+      <span class="soon">turn over for a sneak peek →</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ BACK ═══════════════ -->
+<section class="sheet back">
+  <div class="bokeh" style="right:-22mm;top:-22mm;width:64mm;height:64mm;background:radial-gradient(circle,var(--forest-soft),transparent 70%)"></div>
+  <div class="bokeh" style="left:-24mm;top:110mm;width:60mm;height:60mm;background:radial-gradient(circle,var(--magenta-soft),transparent 70%)"></div>
+
+  <div class="head">
+    <span class="eyebrow">A Sneak Peek Inside</span>
+    <h2>Everything you love,<br><span class="g">under one</span> <span class="m">soulful</span> <span class="g">roof.</span></h2>
+    <p class="sub">A non-clinical social-wellness space where healing happens gently, socially and without judgement.</p>
+    <div class="num"><div><b>10</b><small>experiences</small></div></div>
+  </div>
+
+  <div class="grid">
+    <div class="card p"><div class="thumb"><img src="../public/images/exp-cafe.jpg" alt=""><span class="chip"><svg class="i"><use href="#coffee"/></svg></span></div>
+      <div><h3>Café &amp; Coffee Raving</h3><p>A warm, unhurried coffee culture to linger and connect.</p></div></div>
+    <div class="card"><div class="thumb"><img src="../public/images/exp-bulldog.jpg" alt="" style="object-position:50% 40%"><span class="chip"><svg class="i"><use href="#dog"/></svg></span></div>
+      <div><h3>French Bulldog Adoption</h3><p>Companion pets to ease loneliness and build trust.</p></div></div>
+
+    <div class="card"><div class="thumb"><img src="../public/images/exp-yoga.jpg" alt=""><span class="chip"><svg class="i"><use href="#yoga"/></svg></span></div>
+      <div><h3>Yoga Space</h3><p>Gentle movement and mindfulness for balance.</p></div></div>
+    <div class="card m"><div class="thumb"><img src="../public/images/exp-library.jpg" alt=""><span class="chip"><svg class="i"><use href="#book"/></svg></span></div>
+      <div><h3>Library Space</h3><p>Quiet corners for reading and reflection.</p></div></div>
+
+    <div class="card"><div class="thumb"><img src="../public/images/exp-travel.jpg" alt=""><span class="chip"><svg class="i"><use href="#plane"/></svg></span></div>
+      <div><h3>Travel Cluster</h3><p>Curated group trips that turn healing into shared experiences.</p></div></div>
+    <div class="card p"><div class="thumb"><img src="../public/images/exp-discussion.jpg" alt=""><span class="chip"><svg class="i"><use href="#chat"/></svg></span></div>
+      <div><h3>Group Discussions</h3><p>Peer circles to talk, listen, and be heard.</p></div></div>
+
+    <div class="card m"><div class="thumb"><img src="../public/images/exp-comedy.jpg" alt=""><span class="chip"><svg class="i"><use href="#mic"/></svg></span></div>
+      <div><h3>Stand-up Comedy</h3><p>Light-hearted evenings to release tension and laugh.</p></div></div>
+    <div class="card"><div class="thumb"><img src="../public/images/exp-menu.jpg" alt=""><span class="chip"><svg class="i"><use href="#salad"/></svg></span></div>
+      <div><h3>Curated Healthy Menu</h3><p>Food designed to nourish body and mind.</p></div></div>
+
+    <div class="card"><div class="thumb"><img src="../public/images/exp-talks.jpg" alt=""><span class="chip"><svg class="i"><use href="#talk"/></svg></span></div>
+      <div><h3>Inspirational Talks</h3><p>Sessions with accomplished speakers for perspective.</p></div></div>
+    <div class="card m"><div class="thumb"><img src="../public/images/exp-workshop.jpg" alt=""><span class="chip"><svg class="i"><use href="#palette"/></svg></span></div>
+      <div><h3>Weekend Workshops</h3><p>Skill-building and self-discovery formats to grow.</p></div></div>
+  </div>
+
+  <div class="promise">
+    <svg class="i"><use href="#heart"/></svg>
+    <span>No clinical setting, no stigma — just <em>community, companionship</em> and a gentle way back to yourself.</span>
+  </div>
+
+  <div class="foot">
+    <svg class="wave" viewBox="0 0 560 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,34 C140,0 260,10 340,28 C440,50 500,40 560,14 L560,120 L0,120 Z" fill="var(--forest)"/>
+      <path d="M0,34 C140,0 260,10 340,28 C440,50 500,40 560,14" fill="none" stroke="var(--magenta)" stroke-width="3" opacity=".9"/>
+    </svg>
+    <div class="inner">
+      <img src="../public/images/logo.png" alt="Project Soulfulness">
+      <div class="cta">
+        <div class="t">Be part of the journey.</div>
+        <div class="s">Doors open soon — say hello first ♡</div>
+      </div>
+      <div class="contact">
+        <div><svg class="i"><use href="#phone"/></svg>+91 79938 37007</div>
+        <div><svg class="i"><use href="#mail"/></svg>contact@projectsoulfulness.com</div>
+      </div>
+    </div>
+  </div>
+  <svg class="bfly" style="right:36mm;top:12mm;width:8mm;height:6.4mm;transform:rotate(-14deg)"><use href="#butterfly"/></svg>
+</section>
+
+</body>
+</html>
